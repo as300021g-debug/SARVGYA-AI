@@ -1,0 +1,76 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if false;
+    }
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    function isEmailVerified() {
+      return isSignedIn() && request.auth.token.email_verified == true;
+    }
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+    function incoming() {
+      return request.resource.data;
+    }
+    function existing() {
+      return resource.data;
+    }
+    function isValidUserBackup(data) {
+      return data.keys().hasAll(['userId', 'userProfile', 'memories', 'plugins', 'updatedAt'])
+        && data.keys().size() >= 5
+        && data.userId is string
+        && data.userId.size() <= 128
+        && data.userProfile is map
+        && data.memories is list
+        && data.memories.size() <= 100
+        && data.plugins is list
+        && data.plugins.size() <= 50;
+    }
+    function isValidChatMessage(data) {
+      return data.keys().hasAll(['role', 'content', 'timestamp'])
+        && data.keys().size() >= 3
+        && data.role is string
+        && (data.role == 'user' || data.role == 'model')
+        && data.content is string
+        && data.content.size() <= 50000;
+    }
+    match /users/{userId} {
+      allow get: if isOwner(userId);
+      allow list: if isOwner(userId);
+      allow create: if isOwner(userId) 
+        && isValidId(userId)
+        && isValidUserBackup(incoming())
+        && incoming().userId == userId
+        && incoming().updatedAt == request.time;
+      allow update: if isOwner(userId)
+        && isValidId(userId)
+        && isValidUserBackup(incoming())
+        && incoming().userId == userId
+        && incoming().userId == existing().userId
+        && incoming().updatedAt == request.time;
+      allow delete: if isOwner(userId);
+
+      match /chats/{chatId} {
+        allow get, list: if isOwner(userId);
+        allow create: if isOwner(userId)
+          && isValidId(chatId)
+          && isValidChatMessage(incoming());
+        allow update, delete: if isOwner(userId);
+      }
+
+      match /memories/{memoryId} {
+        allow get, list: if isOwner(userId);
+        allow create, update: if isOwner(userId)
+          && isValidId(memoryId);
+        allow delete: if isOwner(userId);
+      }
+    }
+  }
+}

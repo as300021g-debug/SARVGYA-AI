@@ -1,0 +1,108 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile Settings",
+      "description": "User preferences, personalized traits, theme settings, and administrative permissions",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "avatar": { "type": "string" },
+        "goal": { "type": "string" },
+        "interests": { "type": "string" },
+        "theme": { "type": "string", "enum": ["dark", "light"] },
+        "created": { "type": "string" },
+        "learningStyle": { "type": "string" },
+        "pacing": { "type": "string" },
+        "allowGoogleSearch": { "type": "boolean" },
+        "allowOfficeFeed": { "type": "boolean" },
+        "allowSelfUpdates": { "type": "boolean" },
+        "communicationStyle": { "type": "string" },
+        "sentimentLabel": { "type": "string" },
+        "sentimentScore": { "type": "number" },
+        "rapportLevel": { "type": "string" },
+        "bondLevel": { "type": "number" },
+        "interactionCount": { "type": "number" },
+        "brainwaveProfile": { "type": "string", "enum": ["Delta", "Theta", "Alpha", "Beta", "Gamma"] },
+        "soundscapeEnabled": { "type": "boolean" },
+        "soundscapeVolume": { "type": "number" }
+      },
+      "required": ["name", "theme", "created"]
+    },
+    "AIPlugin": {
+      "title": "AI Plugin State",
+      "description": "Third-party AI plugins with configuration properties and execution parameters",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "version": { "type": "string" },
+        "author": { "type": "string" },
+        "iconName": { "type": "string" },
+        "category": { "type": "string", "enum": ["Tool", "Module", "AI Capability"] },
+        "enabled": { "type": "boolean" },
+        "systemPromptModifier": { "type": "string" }
+      },
+      "required": ["id", "name", "category", "enabled"]
+    },
+    "UserBackup": {
+      "title": "User Cloud Backup Core",
+      "description": "Unified document containing all local state-heavy components for instant data synchronization",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "userProfile": { "$ref": "#/definitions/UserProfile" },
+        "memories": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "plugins": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/AIPlugin" }
+        },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "userProfile", "memories", "plugins", "updatedAt"]
+    },
+    "ChatMessage": {
+      "title": "Chat Message",
+      "description": "A single chat message exchanged between the user and SARVAGYA AI",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "role": { "type": "string", "enum": ["user", "model"] },
+        "content": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["role", "content", "timestamp"]
+    },
+    "PersonalMemoryRecord": {
+      "title": "Personal Memory Item",
+      "description": "User-approved structured personal memory fact with transparency controls",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "category": { "type": "string" },
+        "fact": { "type": "string" },
+        "approved": { "type": "boolean" },
+        "sensitivity": { "type": "string" },
+        "dateAdded": { "type": "string" }
+      },
+      "required": ["id", "category", "fact", "approved"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserBackup",
+      "description": "Core backup document containing a synchronized state of the user's workspace settings, memories, and plugins."
+    },
+    "/users/{userId}/chats/{chatId}": {
+      "schema": "ChatMessage",
+      "description": "User-specific personalized AI conversations"
+    },
+    "/users/{userId}/memories/{memoryId}": {
+      "schema": "PersonalMemoryRecord",
+      "description": "Granular user-approved personal memories and preferences with transparency tracking"
+    }
+  }
+}

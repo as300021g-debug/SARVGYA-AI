@@ -1,0 +1,1227 @@
+# SARVAGYA AI — The Complete Master Blueprint
+
+Full vision • System architecture • Every module • AI intelligence • Continuous learning • Web and Gemini integration • Security • Development roadmap
+
+Aryan, let's bring everything we've discussed about SARVAGYA AI into one complete, deeply explained blueprint.
+
+The goal is not merely to create another AI website with a chatbot, a few tools, and a dashboard. Your vision is to build a unified AI platform that can research, learn from new information, remember useful context, help students, create content, write code, analyze data, operate tools, and improve its performance over time.
+
+The most important distinction is this:
+
+SARVAGYA should be one connected intelligence system with many specialized modules—not dozens of disconnected features.
+
+This blueprint combines your existing SARVAGYA modules, the additional features we discussed, and the technical foundation required to make them work together.
+
+# 1. The ultimate vision of SARVAGYA
+
+## SARVAGYA Intelligence Core
+
+The reasoning and orchestration layer
+
+Understands requests, selects suitable AI models, gathers evidence, plans tasks, invokes tools, and produces responses.
+
+Live Intelligence
+
+Web research, news, search, data sources
+
+Memory & Knowledge
+
+User-approved memories, documents, indexed knowledge
+
+Agents & Automation
+
+Multi-step tasks, workflows, approvals
+
+Safety & Reliability
+
+Permissions, verification, monitoring, recovery
+
+### One connected SARVAGYA experience
+
+Dashboard • Student Hub • Creator Studio • Interactive Labs • Career • Maps • Finance • Developer tools
+
+## What should make it different?
+
+A typical AI website waits for a question and returns an answer. SARVAGYA should also be able to:
+
+- Retrieve recent information when a task requires it.
+- Distinguish facts from assumptions and identify information sources.
+- Remember relevant project context with the user's permission.
+- Break a complicated request into smaller tasks.
+- Use appropriate tools and AI models for each task.
+- Save useful results in the right workspace.
+- Continue approved background jobs even after the user leaves the page.
+- Monitor errors, measure performance, and improve its software through tested updates.
+
+These capabilities must work together. Adding a feature to the sidebar does not automatically make it intelligent.
+
+## What does “universal AI” mean here?
+
+For SARVAGYA, universal should describe the breadth of tasks it can support—not a claim that it knows everything.
+
+It should combine:
+
+1. Intelligence: reasoning, planning, explanation and problem-solving.
+2. Information: web search, connected databases and uploaded files.
+3. Memory: persistent context and a searchable knowledge base.
+4. Action: tools, agents and authorized integrations.
+5. Creation: text, images, video, audio, presentations and code.
+6. Adaptation: personalization, evaluation and carefully tested improvements.
+7. Trust: source citations, privacy, access controls and honest uncertainty.
+
+A platform built around these seven principles has a clearer foundation than one built around an enormous list of unrelated features.
+
+# 2. Your existing SARVAGYA modules
+
+You already have a defined module list. These are the modules to preserve as the foundation, rather than replacing them with another list of names.
+
+## The current 15-module structure
+
+Your existing modules, grouped by their role in the platform
+
+[Futuristic UI Interface Mockups ChatGPT Image Prompt | PromptBase](https://images.openai.com/static-rsc-4/EzyY0nyEBcsFVOSjY2lg5BLmyaq9hFKcVjFnMAwZLWQAk3Wz6JWaDLp5zM6AJy1Uuhs_tfkeHU40f1fkT-SGEUktJ_htZg17i5S_d3AkIm_73z8IvRfrbxZ361EhiI5UYh-NQ2BUalamjOEPPRObG49m4QqEZHhSnz1CRBjntYY?purpose=inline)
+
+### 1. Dashboard
+
+Existing
+
+The central home screen. It should display recent chats, active projects, notifications, running tasks, saved work, and shortcuts. It should also show which background jobs are running and whether they have succeeded or failed.
+
+[Multimodal RAG Pipeline Guide With Neo4j | LlamaIndex](https://images.openai.com/static-rsc-4/Erkqg2PKMEL1hjVGXZ_XDMp1c_KZwSbhjAmDUqqfMER9hV2cV1xkbBFpI2Bcxa8HWGdpW_bbVqLd_pBz97lCMCpc6nmhsJIZbWZFOch-zrgEogxPkD56na8Zcooc8sk9th2Uc9k2tnUtnGcD7X8s3mynSRQiv90yi75cD-AhBY8?purpose=inline)
+
+### 2. AI Companion
+
+Existing
+
+The main conversational interface. It should support text, voice, file uploads, image understanding, reasoning, model selection, streaming responses, conversation history, and tool use.
+
+The Companion is the main interface to intelligence, not the entire intelligence architecture.
+
+[Veo 3.1 Lite vs Higgsfield Cinema Studio 3.0 vs VO3 AI | VO3 AI Blog](https://images.openai.com/static-rsc-4/xlwKXEiPiww5FS1DXxGTqUHWt9dIErY9wefMviY80579cCF7idBWGL9yTwTiaTp3JYD-5kRBlXImBuyQh5WiSw0owrvKfqg4a-BYzxRnc8TYnzWyq5mI0ZeaZqlrSfjqa7wN-oOJzDdik-VTy97Cz2-wookbOckx0FL4Ifymu4o?purpose=inline)
+
+### 3. 3 Bonds
+
+Existing
+
+Preserve this as your named feature. Its exact three-bond meaning needs to follow your intended design. Technically, it could serve as a relationship or connection layer linking the user, the AI, and their projects or knowledge—but that is a proposal, not an established definition.
+
+[ParamedIQ - L'AI per studenti e professionisti sanitari](https://images.openai.com/static-rsc-4/0v3uMdWGRKI_8UbVxhJAGDEoLV1WCH8UaU1wUQ_jle5oI6qC4eG3-dD77GQzRhGSImH0DakXLQg7W9VQygXGOX3g6yCgFxOLSUWgwbo_JRl1wTLICygMNORR6-l1pVMxRwXpLrDWNoWUVG03PWhO0Ewjj1f3-hVFo9H8xevX208?purpose=inline)
+
+### 4. Student Hub
+
+Existing
+
+An educational environment for notes, syllabus tracking, AI tutoring, practice tests, flashcards, past-paper questions, revision planning, and progress tracking. It should reuse the same AI, memory and document systems as the rest of SARVAGYA.
+
+[Tomorrow.io’s Precipitation Insights: Comparing UP and Global Radar – Tomorrow.io](https://images.openai.com/static-rsc-4/oZFysq89Ls24z9luGbOtpnfCGua8SgVLBD4-TPsP0v4mJUUFx1j8eqUWX9iOq8DE174KYvTzn3YbL014pG_WsZptiYXAGxnz-I3zIYiHcABOFBp7jyP-3YjUPZJcwGG9Imbidd0Ja1MfkrRGiIBbFzFDqM8M25GgZV_igP1bSNY?purpose=inline)
+
+### 5. Maps & Weather
+
+Existing
+
+Maps, place discovery, directions, forecasts, alerts and geographic data. Use appropriate map and weather providers, display timestamps, and distinguish current observations from forecasts.
+
+[Swiss Armed Forces](https://images.openai.com/static-rsc-4/V6iAxA320-_7AhGYaUHARyt-UBubS2bZYfUrSjKqwUImfpxYCX_BX0CG6gz66u4OsIilZer-OuISZQLD02c_I3Rdv7NBFEW6NfWBZDSFHQIu-K3SsNkqlOTZ8fyX1_oKuMcCBrdoUOAkYj-O4F57DC0X09egAQQk3cCEDvAzAak?purpose=inline)
+
+### 6. Space & Transit
+
+Existing
+
+This can combine space exploration with transport information: planetary visualizations, satellite tracking, mission updates, and relevant transit data. Keep space science and everyday transport as distinct sections inside the module.
+
+[Atelier: Scholarly Workspace for Research & Deep Reading](https://images.openai.com/static-rsc-4/83hyLuqf0RAGfCg_ZaJBShMaRfOXycWUd6ZkBjejaZZbxNv2ZBIa-d9fzorpD40KruqQ_6pO8-7bmtK45zJ_ju3gV7fd_zu41XCguFq5psWSyYI7ZkVhLISoBOdqrT-y_GgFBJPOQ7fkPBWfaFqyes34uvR5OmF4LI0ud979HX4?purpose=inline)
+
+### 7. Web Navigator
+
+Existing
+
+The research and browsing layer. It should search the web, retrieve pages, extract relevant information, compare sources, summarize findings, and return links and citations. It should not merely display a search box.
+
+[Addressing the Leaky Pipeline in STEM Education: The Research-Backed Impact of Labster](https://images.openai.com/static-rsc-4/Fy6tANfoB3pQFrh_DTcplruFE-3RF3FH40YFM8E33tMaI7L0XHZ_-oxNFmFvRyAmx7PW0mhHUif-o-dVA0fXC6g_dJFd2W13IdIcoAJuolfPrgtGo94PtZ8SYpOdUTvFSwTzlcZBA3KAhQhqVeLUQACursmqAminNFqDHdXOsqI?purpose=inline)
+
+### 8. Interactive Labs
+
+Existing
+
+Hands-on simulations for physics, chemistry, biology, mathematics, coding, electronics and robotics. The AI should explain the experiment, allow parameter changes, and distinguish simulated results from real-world measurements.
+
+[Loom Alternatives (2026): 7 Better Screen Recorders for Creators | Cubix](https://images.openai.com/static-rsc-4/SdvACVoV8MnxzLxczLMpRigUds001y36TvwHlZ6-zTRxiPIaYpjI04n-mp7-i7ZzYET1O7v3Lqm8boisBqPU4HxVnLXp7eS6y02Uj5EdCEbxEOHfzG6suIXGZgWUgBYY-zdmbdFVTQh6pseYjpdG3mLco4T3ShxLfV2lrLTdCLk?purpose=inline)
+
+### 9. Creator Studio
+
+Existing
+
+The creative production environment: writing, image generation and editing, video workflows, audio, presentations, thumbnails, design assets and story development. Expensive generation features should connect to providers that actually support them.
+
+[Magizhchi Software — Making Business Simple, Smart & Scalable](https://images.openai.com/static-rsc-4/a6rx3fIUb-FGqimuwXe8SVY0cdv9nD1dJS-0_GiDGQ0cLAnb48kSzi913_S1_dRzMHGSmI7H26wfwr00Xm0JDq17a2dH8f-PY1J3D7vwtw5YcgzP0C_z_iNGQg567KAXuX5oNtTtMYFn-52oto1oBZdqwFMFUQZPAQlYUqwBqiE?purpose=inline)
+
+### 10. Job & Business
+
+Existing
+
+Resume creation, portfolio building, interview preparation, job research, business planning, startup analysis, market research and business-document generation. Job listings and other live information need external sources.
+
+[PropFirmCircle | Best Prop Firm Reviews & Rankings 2026](https://images.openai.com/static-rsc-4/qDrc6k403sYH-TNv6XEhbQrD0jCHxPwE8qkYkkA9BKdUVq5wtWjAJkc7lFGEocbJP19tdF4KkraGm6V53CTA268W7jqOVRhj1Rh2-zsKRMYmzYKfibPg-iODxv-ms5P2K-3DUT4PkJXztwL5YxZr65uRUPKkoPXClfOm6X-RSyI?purpose=inline)
+
+### 11. Stock Market
+
+Existing
+
+Watchlists, market charts, financial news, company information, historical data and portfolio simulations. Clearly label delayed versus real-time data, and keep educational analysis separate from personalized financial advice.
+
+[Developer Hub for Embedded iPaaS Integrations | Prismatic](https://images.openai.com/static-rsc-4/9m31F__YDrr-qedYDNVv_gve2o5k6ZUNEnk24-k_4CfhpUYBYngiOCGCTrseueytUWuNSNlJLQN1M76_eBaa5eSMhmRdTNs8-bz-caVUr7MuQp3xh60R5pf235S1j6c4u1M-lufs6Wh8eruhOwUn9fmW6f-gmyiX8plKFV76OsQ?purpose=inline)
+
+### 12. Plugin Center
+
+Existing
+
+A controlled marketplace for tools, model providers, APIs and integrations. It should include permissions, compatibility, version information, installation status, and a way to disable or revoke integrations.
+
+[The Vertical AI - AI-Native Enterprise OS for Conversations](https://images.openai.com/static-rsc-4/_ApatfrxKl-f8cttl43W2OeHxQn_eGjZlvp_nJqAn1noePembSrW93DuLHc120Vy9UkAKV9eHc8kXCWRrsft1NuzjDYREUCOLk-wwreXz2CzKARpee6p8XZkY6Zn-91GyoIAS40oq91dSp5r3Hdc1vwFVbh0Zw_fvPr1EDc3a8k?purpose=inline)
+
+### 13. Evolution HUD
+
+Existing
+
+The system-health and improvement dashboard. Show actual performance, model usage, errors, latency, knowledge-source freshness, completed evaluations, active jobs and software versions. Do not display invented intelligence or evolution scores as if they were scientific measurements.
+
+[AI Assistant Privacy and Security Comparison | 2025 Analysis](https://images.openai.com/static-rsc-4/YzkAQENvLHyIk6Xx8jfg9rzRAN2CMrQKSE8sOn4lnF10bf8TvQcdGCrnVzaezdfAa0F5joq_Bm19I8NybYFYgYMoLsI63CqaaNE_A6S3PaqjaiRiYDDgGz-yQEysuLb9mAD4cuZtZbFTC0WLIwI4pAnZwn3u3ulEH7adk_6NKvk?purpose=inline)
+
+### 14. Settings
+
+Existing
+
+Account, appearance, language, notifications, model preferences, memory controls, connected services, accessibility, privacy and security.
+
+Your list also identifies Core Systems as a heading. I would keep it as the architectural category for shared services, rather than treating it as another ordinary destination in the sidebar.
+
+The 15 named modules are your product-facing foundation. The next step is to add the missing capabilities that make them function as a unified system.
+
+# 3. The most important additions
+
+These are the additions I would make to complete the SARVAGYA vision. They are proposed new modules or shared capabilities, not claims that they already exist in your code.
+
+## A. Universal Command Center
+
+[A Smart Search Command Bar UI Design by Lakshay Nagpal on Dribbble](https://images.openai.com/static-rsc-4/maSNpgIEvA0VIfquUGx7GXsGcmWuN1IlRprtWP3_KzcTKp4VOr-0H0EnwCxDkSduEJspv8dSyzEvKqEjRFHgOeq_RTO1pub_xn3vviadvPojGM4olKF5u0r55kTj8K_refr9aqXsRVVFGQO4sBH56JuyaOEqoYbI_deQ0b3sFac?purpose=inline)
+
+Purpose: One entry point for the entire platform.
+
+Instead of opening Student Hub, then searching for a quiz generator, the user could type:
+
+"Create a 20-question quiz from my saved biology notes and schedule a revision session."
+
+It should:
+
+- Understand natural-language requests.
+- Identify the intended module and task.
+- Ask follow-up questions only when necessary.
+- Choose the appropriate model, data source and tools.
+- Show a preview of actions that change data or affect external services.
+- Execute approved actions and report results.
+- Provide links to the artifacts it creates.
+
+Why it matters: It turns the many modules into one coherent experience.
+
+## B. Memory & Knowledge Center
+
+This is different from ordinary chat history.
+
+| Component            | What it does                                                     |
+| -------------------- | ---------------------------------------------------------------- |
+| Conversation history | Saves and retrieves previous chats                               |
+| User memory          | Stores approved preferences and useful recurring context         |
+| Project memory       | Tracks decisions, files and progress for individual projects     |
+| Knowledge base       | Indexes documents and reference material                         |
+| Knowledge graph      | Connects related concepts, projects and sources                  |
+| Memory controls      | Lets users inspect, correct, export and delete saved information |
+
+Example: if a user works on a coding project over several weeks, SARVAGYA should be able to retrieve the project's architecture, known errors and previous decisions without requiring the user to explain everything again.
+
+Memory should be permission-based, searchable and editable. It must not silently turn every conversation into permanent memory.
+
+## C. AI Agents & Automation Center
+
+A chatbot answers questions. An agent can work through a sequence of steps toward a goal.
+
+### Example: Automated study workflow
+
+1\. Gather
+
+Find the selected notes and relevant source material.
+
+2\. Understand
+
+Summarize the chapter and identify important concepts.
+
+3\. Create
+
+Generate flashcards and a practice test.
+
+4\. Organize
+
+Save the material and propose a revision schedule.
+
+The automation engine should support:
+
+- Multi-step tasks.
+- Scheduled runs.
+- Task queues and progress tracking.
+- Retry and recovery after errors.
+- Cancellation and pause controls.
+- Logs of actions and results.
+- Permission checks before consequential actions.
+- Human approval for sending messages, publishing, purchases or other sensitive operations.
+
+This is one of the most important additions because it lets SARVAGYA use its other capabilities rather than merely describe them.
+
+## D. AI Workspace
+
+A shared working environment for all created material.
+
+Include:
+
+- Notes and documents.
+- Tasks and projects.
+- Calendar and reminders.
+- File management.
+- Saved AI responses.
+- Tables and spreadsheets.
+- Presentations.
+- Whiteboards and diagrams.
+- Version history.
+- Project-specific AI context.
+
+For example, the output of Web Navigator could be turned into a research document, which could then become a presentation in Creator Studio.
+
+## E. Developer Hub
+
+Your platform needs a dedicated environment for software development, especially because SARVAGYA itself is a software project.
+
+Include:
+
+- AI coding assistant.
+- Code editor with syntax highlighting.
+- Code explanation and debugging.
+- Repository and Git integration.
+- Test generation and execution.
+- API testing.
+- Database inspection.
+- Logs and error tracing.
+- Sandboxed code execution.
+- Deployment integrations.
+
+Code execution must be isolated and resource-limited. The AI should not automatically receive unrestricted access to the host operating system or secrets.
+
+## F. Trust & Security Center
+
+Security should be a platform-wide system, not just a settings page.
+
+Include:
+
+- Account and session controls.
+- Role-based permissions.
+- Data export and deletion.
+- Connected-service permissions.
+- Audit logs.
+- Rate limiting and abuse protection.
+- Secret and API-key management.
+- Prompt-injection defenses for retrieved web content.
+- User-visible AI citations and uncertainty.
+- Backups and recovery.
+
+This becomes especially important once agents, plugins, files and external APIs can interact.
+
+# 4. The complete proposed module map
+
+Here is how I would organize the full platform without creating an unnecessarily crowded sidebar.
+
+## SARVAGYA Navigation Architecture
+
+Existing modules are marked “Existing”; additional destinations are proposals.
+
+Home & Control
+
+Dashboard · Universal Command Center (new) · Notifications
+
+Intelligence
+
+AI Companion · 3 Bonds · Memory & Knowledge (new) · Web Navigator · AI Agents (new)
+
+Learn & Discover
+
+Student Hub · Interactive Labs · Maps & Weather · Space & Transit
+
+Build & Create
+
+Creator Studio · Developer Hub (new) · AI Workspace (new)
+
+Work & Finance
+
+Job & Business · Stock Market
+
+Extend & Automate
+
+Automation Center (new) · Plugin Center · Integrations
+
+System & Account
+
+Evolution HUD · Trust & Security Center (new) · Settings
+
+Some capabilities should not be separate sidebar destinations at all. Voice, translation, document understanding, image understanding, citations, notifications, and model selection should be reusable services accessible throughout the platform.
+
+That avoids building the same functionality several times.
+
+# 5. The universal intelligence engine
+
+This is the most important technical part of the whole project.
+
+SARVAGYA should have a shared Intelligence Core that decides how to solve each request. The frontend displays the experience, while the backend coordinates the actual work.
+
+## How one request should travel through SARVAGYA
+
+\#chatgpt-mermaid-\_r_n6\_{font-family:-apple-system-body,ui-sans-serif,-apple-system,system-ui,"Segoe UI",Helvetica,"Apple Color Emoji",Arial,sans-serif,"Segoe UI Emoji","Segoe UI Symbol";font-size:16px;fill:rgb(13, 13, 13);}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#chatgpt-mermaid-\_r_n6\_ .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#chatgpt-mermaid-\_r_n6\_ .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#chatgpt-mermaid-\_r_n6\_ .error-icon{fill:rgb(243, 243, 243);}#chatgpt-mermaid-\_r_n6\_ .error-text{fill:rgb(13, 13, 13);stroke:rgb(13, 13, 13);}#chatgpt-mermaid-\_r_n6\_ .edge-thickness-normal{stroke-width:1px;}#chatgpt-mermaid-\_r_n6\_ .edge-thickness-thick{stroke-width:3.5px;}#chatgpt-mermaid-\_r_n6\_ .edge-pattern-solid{stroke-dasharray:0;}#chatgpt-mermaid-\_r_n6\_ .edge-thickness-invisible{stroke-width:0;fill:none;}#chatgpt-mermaid-\_r_n6\_ .edge-pattern-dashed{stroke-dasharray:3;}#chatgpt-mermaid-\_r_n6\_ .edge-pattern-dotted{stroke-dasharray:2;}#chatgpt-mermaid-\_r_n6\_ .marker{fill:rgb(143, 143, 143);stroke:rgb(143, 143, 143);}#chatgpt-mermaid-\_r_n6\_ .marker.cross{stroke:rgb(143, 143, 143);}#chatgpt-mermaid-\_r_n6\_ svg{font-family:-apple-system-body,ui-sans-serif,-apple-system,system-ui,"Segoe UI",Helvetica,"Apple Color Emoji",Arial,sans-serif,"Segoe UI Emoji","Segoe UI Symbol";font-size:16px;}#chatgpt-mermaid-\_r_n6\_ p{margin:0;}#chatgpt-mermaid-\_r_n6\_ .label{font-family:-apple-system-body,ui-sans-serif,-apple-system,system-ui,"Segoe UI",Helvetica,"Apple Color Emoji",Arial,sans-serif,"Segoe UI Emoji","Segoe UI Symbol";color:rgb(13, 13, 13);}#chatgpt-mermaid-\_r_n6\_ .cluster-label text{fill:rgb(13, 13, 13);}#chatgpt-mermaid-\_r_n6\_ .cluster-label span{color:rgb(13, 13, 13);}#chatgpt-mermaid-\_r_n6\_ .cluster-label span p{background-color:transparent;}#chatgpt-mermaid-\_r_n6\_ .label text,#chatgpt-mermaid-\_r_n6\_ span{fill:rgb(13, 13, 13);color:rgb(13, 13, 13);}#chatgpt-mermaid-\_r_n6\_ .node rect,#chatgpt-mermaid-\_r_n6\_ .node circle,#chatgpt-mermaid-\_r_n6\_ .node ellipse,#chatgpt-mermaid-\_r_n6\_ .node polygon,#chatgpt-mermaid-\_r_n6\_ .node path{fill:rgb(222, 234, 251);stroke:rgb(83, 154, 248);stroke-width:1px;}#chatgpt-mermaid-\_r_n6\_ .rough-node .label text,#chatgpt-mermaid-\_r_n6\_ .node .label text,#chatgpt-mermaid-\_r_n6\_ .image-shape .label,#chatgpt-mermaid-\_r_n6\_ .icon-shape .label{text-anchor:middle;}#chatgpt-mermaid-\_r_n6\_ .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#chatgpt-mermaid-\_r_n6\_ .rough-node .label,#chatgpt-mermaid-\_r_n6\_ .node .label,#chatgpt-mermaid-\_r_n6\_ .image-shape .label,#chatgpt-mermaid-\_r_n6\_ .icon-shape .label{text-align:center;}#chatgpt-mermaid-\_r_n6\_ .node.clickable{cursor:pointer;}#chatgpt-mermaid-\_r_n6\_ .root .anchor path{fill:rgb(143, 143, 143)!important;stroke-width:0;stroke:rgb(143, 143, 143);}#chatgpt-mermaid-\_r_n6\_ .arrowheadPath{fill:rgb(143, 143, 143);}#chatgpt-mermaid-\_r_n6\_ .edgePath .path{stroke:rgb(143, 143, 143);stroke-width:1px;}#chatgpt-mermaid-\_r_n6\_ .flowchart-link{stroke:rgb(143, 143, 143);fill:none;}#chatgpt-mermaid-\_r_n6\_ .edgeLabel{background-color:rgb(252, 252, 252);text-align:center;}#chatgpt-mermaid-\_r_n6\_ .edgeLabel p{background-color:rgb(252, 252, 252);}#chatgpt-mermaid-\_r_n6\_ .edgeLabel rect{opacity:0.5;background-color:rgb(252, 252, 252);fill:rgb(252, 252, 252);}#chatgpt-mermaid-\_r_n6\_ .labelBkg{background-color:rgba(252, 252, 252, 0.5);}#chatgpt-mermaid-\_r_n6\_ .cluster rect{fill:rgb(243, 243, 243);stroke:rgba(0, 0, 0, 0.1);stroke-width:1px;}#chatgpt-mermaid-\_r_n6\_ .cluster text{fill:rgb(13, 13, 13);}#chatgpt-mermaid-\_r_n6\_ .cluster span{color:rgb(13, 13, 13);}#chatgpt-mermaid-\_r_n6\_ div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:-apple-system-body,ui-sans-serif,-apple-system,system-ui,"Segoe UI",Helvetica,"Apple Color Emoji",Arial,sans-serif,"Segoe UI Emoji","Segoe UI Symbol";font-size:12px;background:rgb(243, 243, 243);border:1px solid rgba(0, 0, 0, 0.1);border-radius:2px;pointer-events:none;z-index:100;}#chatgpt-mermaid-\_r_n6\_ .flowchartTitleText{text-anchor:middle;font-size:18px;fill:rgb(13, 13, 13);}#chatgpt-mermaid-\_r_n6\_ rect.text{fill:none;stroke-width:0;}#chatgpt-mermaid-\_r_n6\_ .icon-shape,#chatgpt-mermaid-\_r_n6\_ .image-shape{background-color:rgb(252, 252, 252);text-align:center;}#chatgpt-mermaid-\_r_n6\_ .icon-shape p,#chatgpt-mermaid-\_r_n6\_ .image-shape p{background-color:rgb(252, 252, 252);padding:2px;}#chatgpt-mermaid-\_r_n6\_ .icon-shape .label rect,#chatgpt-mermaid-\_r_n6\_ .image-shape .label rect{opacity:0.5;background-color:rgb(252, 252, 252);fill:rgb(252, 252, 252);}#chatgpt-mermaid-\_r_n6\_ .label-icon{display:inline-block;height:1em;overflow:visible;vertical-align:-0.125em;}#chatgpt-mermaid-\_r_n6\_ .node .label-icon path{fill:currentColor;stroke:revert;stroke-width:revert;}#chatgpt-mermaid-\_r_n6\_ .node .neo-node{stroke:rgb(83, 154, 248);}#chatgpt-mermaid-\_r_n6\_ [data-look="neo"].node rect,#chatgpt-mermaid-\_r_n6\_ [data-look="neo"].cluster rect,#chatgpt-mermaid-\_r_n6\_ [data-look="neo"].node polygon{stroke:url(#chatgpt-mermaid-\_r_n6\_-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#chatgpt-mermaid-\_r_n6\_ [data-look="neo"].swimlane.cluster rect{filter:none;}#chatgpt-mermaid-\_r_n6\_ [data-look="neo"].node path{stroke:url(#chatgpt-mermaid-\_r_n6\_-gradient);stroke-width:1px;}#chatgpt-mermaid-\_r_n6\_ [data-look="neo"].node .outer-path{filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#chatgpt-mermaid-\_r_n6\_ [data-look="neo"].node .neo-line path{stroke:rgb(83, 154, 248);filter:none;}#chatgpt-mermaid-\_r_n6\_ [data-look="neo"].node circle{stroke:url(#chatgpt-mermaid-\_r_n6\_-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#chatgpt-mermaid-\_r_n6\_ [data-look="neo"].node circle .state-start{fill:#000000;}#chatgpt-mermaid-\_r_n6\_ [data-look="neo"].icon-shape .icon{fill:url(#chatgpt-mermaid-\_r_n6\_-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#chatgpt-mermaid-\_r_n6\_ [data-look="neo"].icon-shape .icon-neo path{stroke:url(#chatgpt-mermaid-\_r_n6\_-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#chatgpt-mermaid-\_r_n6\_ .node text{font-size:14px;font-weight:600;letter-spacing:normal;fill:rgb(0, 79, 153);}#chatgpt-mermaid-\_r_n6\_ .edgeLabels text{font-size:13px;font-weight:600;letter-spacing:-0.08px;fill:rgb(0, 79, 153);}#chatgpt-mermaid-\_r_n6\_ .node tspan[font-weight="normal"],#chatgpt-mermaid-\_r_n6\_ .edgeLabels tspan[font-weight="normal"]{font-weight:600;}#chatgpt-mermaid-\_r_n6\_ .edgeLabel .label rect{opacity:1;rx:13px;ry:13px;fill:rgb(245, 250, 255);stroke:rgb(206, 219, 229);stroke-width:1px;}#chatgpt-mermaid-\_r_n6\_ .node rect,#chatgpt-mermaid-\_r_n6\_ .node circle,#chatgpt-mermaid-\_r_n6\_ .node ellipse,#chatgpt-mermaid-\_r_n6\_ .node polygon,#chatgpt-mermaid-\_r_n6\_ .node path{fill:rgb(229, 243, 255);stroke:rgba(0, 0, 0, 0.1);stroke-width:1px;}#chatgpt-mermaid-\_r_n6\_ .node rect{rx:16px;ry:16px;}#chatgpt-mermaid-\_r_n6\_ .node.mermaid-decision .label-container{fill:rgb(245, 250, 255);stroke:rgb(206, 219, 229);stroke-dasharray:2,2;}#chatgpt-mermaid-\_r_n6\_ .edgePaths .flowchart-link{stroke:rgb(143, 143, 143);stroke-width:1px;stroke-linecap:round;stroke-linejoin:round;}#chatgpt-mermaid-\_r_n6\_ .marker{fill:rgb(143, 143, 143);stroke:rgb(143, 143, 143);}#chatgpt-mermaid-\_r_n6\_ :root{--mermaid-font-family:-apple-system-body,ui-sans-serif,-apple-system,system-ui,"Segoe UI",Helvetica,"Apple Color Emoji",Arial,sans-serif,"Segoe UI Emoji","Segoe UI Symbol";}User RequestAuthentication & PermissionsRequest UnderstandingContext and Memory RetrievalTask PlannerModel RouterTool RouterWeb and Data RetrievalEvidence and Result ValidationSufficient and Safe?Response or Approved ActionSave Artifact and Audit ResultUpdate Relevant Memory ifAuthorizedNoYes
+
+### Step 1: Understand the request
+
+The system determines what the user wants, what information is available, and whether the task requires research, calculation, generation or an external action.
+
+For example:
+
+"Tell me the latest major space discoveries and explain them for a student."
+
+This is not just a chat request. It needs current research, source evaluation, summarization and an appropriate explanation.
+
+### Step 2: Retrieve relevant context
+
+SARVAGYA checks the permitted information sources:
+
+- The current conversation.
+- Relevant saved memories.
+- Project-specific context.
+- Uploaded documents.
+- Authorized external databases.
+- Web sources, when current information is required.
+
+Retrieval should be selective. The system should not send every saved document to every model for every request.
+
+### Step 3: Plan the work
+
+The planner creates a sequence of tasks. Simple requests can go straight to an answer; complex requests may require several steps.
+
+A useful task record contains:
+
+- Task ID.
+- Goal.
+- Current status.
+- Required inputs.
+- Planned operations.
+- Permissions required.
+- Retry policy.
+- Output and error details.
+
+### Step 4: Select the right model
+
+A model router should choose between available models based on capability, latency, cost, context length, privacy requirements and provider availability.
+
+For example:
+
+| Task                     | Suitable approach                               |
+| ------------------------ | ----------------------------------------------- |
+| Simple question          | Fast, low-cost language model                   |
+| Complex reasoning        | Model suited to multi-step reasoning            |
+| Current news             | Web retrieval plus a synthesis model            |
+| Image analysis           | Vision-capable model                            |
+| Coding                   | Code-capable model plus testing tools           |
+| Large document           | Document extraction, chunking and retrieval     |
+| Mathematical calculation | Model reasoning plus a deterministic calculator |
+
+This avoids wasting the most expensive model on every small task.
+
+### Step 5: Use tools safely
+
+The AI may request a tool call, but the backend must validate the request, check permissions, execute the operation, and return its result.
+
+The model should not be trusted to invent successful tool results.
+
+### Step 6: Verify and deliver
+
+The platform checks whether the result is supported, whether calculations are correct where they can be tested, whether citations actually support the claims, and whether the task has been completed.
+
+For high-impact or uncertain tasks, the system should explain its limitations rather than pretending certainty.
+
+# 6. Your most ambitious requirement: worldwide web, Google, Gemini and continuously updated information
+
+In your earlier SARVAGYA vision, you wanted the system to receive new information automatically, stay current, and evolve continuously.
+
+This is possible to implement in a practical form, but it requires several distinct systems.
+
+## A. Live Web Intelligence
+
+Search providers
+
+Retrieve current webpages, news, research papers and other indexed information through authorized search services.
+
+Scheduled data feeds
+
+Poll selected RSS feeds, APIs and other permitted sources at appropriate intervals.
+
+Ingestion pipeline
+
+Extract useful information, normalize formats, remove duplicates, store timestamps and index documents for retrieval.
+
+Evidence verification
+
+Track source quality, publication time, corroboration and conflicts between reports.
+
+### How a news update should work
+
+1. A scheduled worker checks a configured source.
+2. It fetches new items if permitted.
+3. The system detects duplicates and records publication and retrieval times.
+4. It indexes the content.
+5. It identifies topics and links related material.
+6. It updates dashboards or sends alerts according to user preferences.
+7. When a user asks a question, SARVAGYA retrieves relevant evidence and generates a cited answer.
+
+This gives you an actual update pipeline instead of a fake animation that claims the AI is learning continuously.
+
+## B. Google Search and Gemini are different integrations
+
+They serve different purposes.
+
+| Component                                        | Role in SARVAGYA                                                          |
+| ------------------------------------------------ | ------------------------------------------------------------------------- |
+| Google Search or another web-search provider     | Finds relevant webpages                                                   |
+| Gemini API                                       | Provides AI capabilities through Google's models                          |
+| Search-grounded Gemini features, where available | Combine model responses with supported search grounding                   |
+| Other AI providers                               | Provide alternative model capabilities and fallback options               |
+| SARVAGYA retrieval system                        | Stores and retrieves information from sources you are authorized to index |
+| SARVAGYA orchestration layer                     | Coordinates the providers, tools and results                              |
+
+Using Gemini does not automatically give SARVAGYA unrestricted access to all of Google, the entire internet, or all Google services.
+
+Similarly, a search engine does not contain every webpage, and some sources require subscriptions, authentication or special access.
+
+Your integration should use supported APIs, respect quotas and access restrictions, and track the provenance of retrieved content.
+
+## C. Does the AI need to update every second?
+
+Not every source needs to be checked every second. Different sources have different update speeds, rate limits, costs and importance.
+
+A sensible initial policy could be:
+
+| Information type            | Possible refresh policy                           |
+| --------------------------- | ------------------------------------------------- |
+| Critical application health | Every few seconds                                 |
+| High-priority live data     | According to the provider's supported update rate |
+| Selected news feeds         | Every few minutes, or as the feed permits         |
+| General research sources    | On demand or scheduled                            |
+| Personal knowledge index    | When new or changed documents arrive              |
+| User memory                 | When authorized information is saved              |
+| Software upgrades           | Only after testing and approval                   |
+
+These are example policies, not guarantees of the actual update rate.
+
+The distinction matters: checking a system every second is not the same as receiving new information every second.
+
+You can build a worker that wakes up every second, checks for urgent jobs, and schedules due tasks. It should not necessarily fetch every website or call every AI model on each cycle.
+
+## D. What “learning every second” should really mean
+
+There are four different types of learning and adaptation:
+
+### 1. Information updating
+
+New documents, news, facts and records are retrieved and indexed. This is the most practical form of continuous knowledge updating.
+
+### 2. Memory updating
+
+Useful, authorized information about users and projects is saved, corrected or removed.
+
+### 3. Performance improvement
+
+The system records failures, evaluates outputs, compares configurations and uses test results to improve prompts, retrieval, routing and workflows.
+
+### 4. Model training
+
+The model's internal parameters are changed through a separate training or fine-tuning process. This requires suitable data, compute, evaluation and deployment controls.
+
+These are not interchangeable.
+
+An application can update its knowledge base continuously without retraining its underlying AI model. Likewise, using a model repeatedly does not automatically make that model smarter.
+
+For SARVAGYA, I would prioritize retrieval, memory, evaluations and tested configuration improvements before attempting continual model training.
+
+## E. How to make Evolution HUD truthful
+
+Instead of a fictional “IQ increases every second” display, show real measurements:
+
+- Last successful source update.
+- Number of documents ingested.
+- Number of duplicates rejected.
+- Search success rate.
+- Response latency.
+- Model errors and provider outages.
+- Task completion rate.
+- Evaluation scores on a fixed test set.
+- Memory operations completed.
+- Pending and failed jobs.
+- Current application version.
+- Date of the last validated deployment.
+
+This gives your Evolution HUD a real engineering purpose.
+
+# 7. Technical architecture: how the website and app should be built
+
+Your previously discussed project used a Vite frontend mounted on an Express server, TypeScript, WebSockets and background-agent functionality. The design below builds on that direction; it is not a claim that every component has already been implemented or verified.
+
+## Recommended architecture
+
+\#chatgpt-mermaid-\_r_nf\_{font-family:-apple-system-body,ui-sans-serif,-apple-system,system-ui,"Segoe UI",Helvetica,"Apple Color Emoji",Arial,sans-serif,"Segoe UI Emoji","Segoe UI Symbol";font-size:16px;fill:rgb(13, 13, 13);}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#chatgpt-mermaid-\_r_nf\_ .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#chatgpt-mermaid-\_r_nf\_ .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#chatgpt-mermaid-\_r_nf\_ .error-icon{fill:rgb(243, 243, 243);}#chatgpt-mermaid-\_r_nf\_ .error-text{fill:rgb(13, 13, 13);stroke:rgb(13, 13, 13);}#chatgpt-mermaid-\_r_nf\_ .edge-thickness-normal{stroke-width:1px;}#chatgpt-mermaid-\_r_nf\_ .edge-thickness-thick{stroke-width:3.5px;}#chatgpt-mermaid-\_r_nf\_ .edge-pattern-solid{stroke-dasharray:0;}#chatgpt-mermaid-\_r_nf\_ .edge-thickness-invisible{stroke-width:0;fill:none;}#chatgpt-mermaid-\_r_nf\_ .edge-pattern-dashed{stroke-dasharray:3;}#chatgpt-mermaid-\_r_nf\_ .edge-pattern-dotted{stroke-dasharray:2;}#chatgpt-mermaid-\_r_nf\_ .marker{fill:rgb(143, 143, 143);stroke:rgb(143, 143, 143);}#chatgpt-mermaid-\_r_nf\_ .marker.cross{stroke:rgb(143, 143, 143);}#chatgpt-mermaid-\_r_nf\_ svg{font-family:-apple-system-body,ui-sans-serif,-apple-system,system-ui,"Segoe UI",Helvetica,"Apple Color Emoji",Arial,sans-serif,"Segoe UI Emoji","Segoe UI Symbol";font-size:16px;}#chatgpt-mermaid-\_r_nf\_ p{margin:0;}#chatgpt-mermaid-\_r_nf\_ .label{font-family:-apple-system-body,ui-sans-serif,-apple-system,system-ui,"Segoe UI",Helvetica,"Apple Color Emoji",Arial,sans-serif,"Segoe UI Emoji","Segoe UI Symbol";color:rgb(13, 13, 13);}#chatgpt-mermaid-\_r_nf\_ .cluster-label text{fill:rgb(13, 13, 13);}#chatgpt-mermaid-\_r_nf\_ .cluster-label span{color:rgb(13, 13, 13);}#chatgpt-mermaid-\_r_nf\_ .cluster-label span p{background-color:transparent;}#chatgpt-mermaid-\_r_nf\_ .label text,#chatgpt-mermaid-\_r_nf\_ span{fill:rgb(13, 13, 13);color:rgb(13, 13, 13);}#chatgpt-mermaid-\_r_nf\_ .node rect,#chatgpt-mermaid-\_r_nf\_ .node circle,#chatgpt-mermaid-\_r_nf\_ .node ellipse,#chatgpt-mermaid-\_r_nf\_ .node polygon,#chatgpt-mermaid-\_r_nf\_ .node path{fill:rgb(222, 234, 251);stroke:rgb(83, 154, 248);stroke-width:1px;}#chatgpt-mermaid-\_r_nf\_ .rough-node .label text,#chatgpt-mermaid-\_r_nf\_ .node .label text,#chatgpt-mermaid-\_r_nf\_ .image-shape .label,#chatgpt-mermaid-\_r_nf\_ .icon-shape .label{text-anchor:middle;}#chatgpt-mermaid-\_r_nf\_ .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#chatgpt-mermaid-\_r_nf\_ .rough-node .label,#chatgpt-mermaid-\_r_nf\_ .node .label,#chatgpt-mermaid-\_r_nf\_ .image-shape .label,#chatgpt-mermaid-\_r_nf\_ .icon-shape .label{text-align:center;}#chatgpt-mermaid-\_r_nf\_ .node.clickable{cursor:pointer;}#chatgpt-mermaid-\_r_nf\_ .root .anchor path{fill:rgb(143, 143, 143)!important;stroke-width:0;stroke:rgb(143, 143, 143);}#chatgpt-mermaid-\_r_nf\_ .arrowheadPath{fill:rgb(143, 143, 143);}#chatgpt-mermaid-\_r_nf\_ .edgePath .path{stroke:rgb(143, 143, 143);stroke-width:1px;}#chatgpt-mermaid-\_r_nf\_ .flowchart-link{stroke:rgb(143, 143, 143);fill:none;}#chatgpt-mermaid-\_r_nf\_ .edgeLabel{background-color:rgb(252, 252, 252);text-align:center;}#chatgpt-mermaid-\_r_nf\_ .edgeLabel p{background-color:rgb(252, 252, 252);}#chatgpt-mermaid-\_r_nf\_ .edgeLabel rect{opacity:0.5;background-color:rgb(252, 252, 252);fill:rgb(252, 252, 252);}#chatgpt-mermaid-\_r_nf\_ .labelBkg{background-color:rgba(252, 252, 252, 0.5);}#chatgpt-mermaid-\_r_nf\_ .cluster rect{fill:rgb(243, 243, 243);stroke:rgba(0, 0, 0, 0.1);stroke-width:1px;}#chatgpt-mermaid-\_r_nf\_ .cluster text{fill:rgb(13, 13, 13);}#chatgpt-mermaid-\_r_nf\_ .cluster span{color:rgb(13, 13, 13);}#chatgpt-mermaid-\_r_nf\_ div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:-apple-system-body,ui-sans-serif,-apple-system,system-ui,"Segoe UI",Helvetica,"Apple Color Emoji",Arial,sans-serif,"Segoe UI Emoji","Segoe UI Symbol";font-size:12px;background:rgb(243, 243, 243);border:1px solid rgba(0, 0, 0, 0.1);border-radius:2px;pointer-events:none;z-index:100;}#chatgpt-mermaid-\_r_nf\_ .flowchartTitleText{text-anchor:middle;font-size:18px;fill:rgb(13, 13, 13);}#chatgpt-mermaid-\_r_nf\_ rect.text{fill:none;stroke-width:0;}#chatgpt-mermaid-\_r_nf\_ .icon-shape,#chatgpt-mermaid-\_r_nf\_ .image-shape{background-color:rgb(252, 252, 252);text-align:center;}#chatgpt-mermaid-\_r_nf\_ .icon-shape p,#chatgpt-mermaid-\_r_nf\_ .image-shape p{background-color:rgb(252, 252, 252);padding:2px;}#chatgpt-mermaid-\_r_nf\_ .icon-shape .label rect,#chatgpt-mermaid-\_r_nf\_ .image-shape .label rect{opacity:0.5;background-color:rgb(252, 252, 252);fill:rgb(252, 252, 252);}#chatgpt-mermaid-\_r_nf\_ .label-icon{display:inline-block;height:1em;overflow:visible;vertical-align:-0.125em;}#chatgpt-mermaid-\_r_nf\_ .node .label-icon path{fill:currentColor;stroke:revert;stroke-width:revert;}#chatgpt-mermaid-\_r_nf\_ .node .neo-node{stroke:rgb(83, 154, 248);}#chatgpt-mermaid-\_r_nf\_ [data-look="neo"].node rect,#chatgpt-mermaid-\_r_nf\_ [data-look="neo"].cluster rect,#chatgpt-mermaid-\_r_nf\_ [data-look="neo"].node polygon{stroke:url(#chatgpt-mermaid-\_r_nf\_-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#chatgpt-mermaid-\_r_nf\_ [data-look="neo"].swimlane.cluster rect{filter:none;}#chatgpt-mermaid-\_r_nf\_ [data-look="neo"].node path{stroke:url(#chatgpt-mermaid-\_r_nf\_-gradient);stroke-width:1px;}#chatgpt-mermaid-\_r_nf\_ [data-look="neo"].node .outer-path{filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#chatgpt-mermaid-\_r_nf\_ [data-look="neo"].node .neo-line path{stroke:rgb(83, 154, 248);filter:none;}#chatgpt-mermaid-\_r_nf\_ [data-look="neo"].node circle{stroke:url(#chatgpt-mermaid-\_r_nf\_-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#chatgpt-mermaid-\_r_nf\_ [data-look="neo"].node circle .state-start{fill:#000000;}#chatgpt-mermaid-\_r_nf\_ [data-look="neo"].icon-shape .icon{fill:url(#chatgpt-mermaid-\_r_nf\_-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#chatgpt-mermaid-\_r_nf\_ [data-look="neo"].icon-shape .icon-neo path{stroke:url(#chatgpt-mermaid-\_r_nf\_-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#chatgpt-mermaid-\_r_nf\_ .node text{font-size:14px;font-weight:600;letter-spacing:normal;fill:rgb(0, 79, 153);}#chatgpt-mermaid-\_r_nf\_ .edgeLabels text{font-size:13px;font-weight:600;letter-spacing:-0.08px;fill:rgb(0, 79, 153);}#chatgpt-mermaid-\_r_nf\_ .node tspan[font-weight="normal"],#chatgpt-mermaid-\_r_nf\_ .edgeLabels tspan[font-weight="normal"]{font-weight:600;}#chatgpt-mermaid-\_r_nf\_ .edgeLabel .label rect{opacity:1;rx:13px;ry:13px;fill:rgb(245, 250, 255);stroke:rgb(206, 219, 229);stroke-width:1px;}#chatgpt-mermaid-\_r_nf\_ .node rect,#chatgpt-mermaid-\_r_nf\_ .node circle,#chatgpt-mermaid-\_r_nf\_ .node ellipse,#chatgpt-mermaid-\_r_nf\_ .node polygon,#chatgpt-mermaid-\_r_nf\_ .node path{fill:rgb(229, 243, 255);stroke:rgba(0, 0, 0, 0.1);stroke-width:1px;}#chatgpt-mermaid-\_r_nf\_ .node rect{rx:16px;ry:16px;}#chatgpt-mermaid-\_r_nf\_ .node.mermaid-decision .label-container{fill:rgb(245, 250, 255);stroke:rgb(206, 219, 229);stroke-dasharray:2,2;}#chatgpt-mermaid-\_r_nf\_ .edgePaths .flowchart-link{stroke:rgb(143, 143, 143);stroke-width:1px;stroke-linecap:round;stroke-linejoin:round;}#chatgpt-mermaid-\_r_nf\_ .marker{fill:rgb(143, 143, 143);stroke:rgb(143, 143, 143);}#chatgpt-mermaid-\_r_nf\_ :root{--mermaid-font-family:-apple-system-body,ui-sans-serif,-apple-system,system-ui,"Segoe UI",Helvetica,"Apple Color Emoji",Arial,sans-serif,"Segoe UI Emoji","Segoe UI Symbol";}Web App / Mobile AppAPI Gateway & AuthWebSocket GatewayAI OrchestratorModel RouterTool & Permission RouterRetrieval ServiceJob QueueExternal AI ProvidersApproved Tools & APIsDatabase & Document IndexBackground WorkersAuthorized Web/Data SourcesMonitoring & Audit LogsLive updates
+
+### 7.1 Frontend
+
+Responsibilities:
+
+- Render the dashboard and modules.
+- Collect user input.
+- Stream answers and progress.
+- Upload and display files.
+- Manage local interface state.
+- Show task controls and errors.
+- Provide accessible, responsive layouts.
+
+The frontend should not contain secret provider API keys or be responsible for unrestricted privileged operations.
+
+### 7.2 Backend API
+
+The backend handles authentication, authorization, validation, data access, provider calls and application rules.
+
+Possible route groups include:
+
+- `/api/chat`
+- `/api/models`
+- `/api/web/search`
+- `/api/documents`
+- `/api/memory`
+- `/api/agents`
+- `/api/jobs`
+- `/api/plugins`
+- `/api/health`
+
+These are proposed routes. Their actual request and response formats must be defined before implementation.
+
+### 7.3 WebSocket streaming
+
+A WebSocket connection allows the server to send events without waiting for a new HTTP request each time.
+
+For example:
+
+- `task.started`
+- `assistant.delta`
+- `tool.started`
+- `tool.completed`
+- `task.progress`
+- `task.completed`
+- `task.failed`
+
+Each event should include an appropriate task or request identifier. Sequence numbers can help the client detect missing events.
+
+For reliability, implement:
+
+- Reconnection with bounded exponential backoff.
+- Heartbeats and stale-connection detection.
+- Authentication and authorization.
+- Event buffering where appropriate.
+- Request IDs and duplicate-event protection.
+- Replay or resumption where supported by the persisted event log.
+- A clear transition between streaming and completed states.
+
+A connected WebSocket is not the same thing as a durable job. If a browser closes, a server restarts or a connection breaks, the job's state should remain in persistent storage.
+
+### 7.4 Persistent background workers
+
+A robust job system should record jobs in a database or durable queue rather than relying only on an in-memory loop.
+
+A job can have states such as:
+
+`queued → running → waiting_for_approval → completed`
+
+It also needs failure, cancellation and retry states.
+
+Workers should have timeouts, concurrency limits, retry policies and idempotency controls so that a repeated event does not accidentally execute the same consequential action twice.
+
+### 7.5 Storage
+
+Use different storage mechanisms for different purposes:
+
+| Storage                | Purpose                                                    |
+| ---------------------- | ---------------------------------------------------------- |
+| Relational database    | Users, projects, jobs, permissions, structured records     |
+| Object storage         | Uploaded files, generated images and other large artifacts |
+| Full-text search index | Searchable document content                                |
+| Vector index           | Semantic retrieval from supported embeddings               |
+| Cache                  | Temporary, frequently requested data                       |
+| Event and audit store  | Job histories, system events and security records          |
+
+You do not need to install every possible database on day one. Start with a reliable database and add specialized components when measured requirements justify them.
+
+### 7.6 Monitoring
+
+The system should log meaningful operational events without unnecessarily recording sensitive content.
+
+Monitor:
+
+- API response times.
+- WebSocket connection failures.
+- Provider latency and rate limits.
+- Token and service costs.
+- Background queue delays.
+- Retrieval errors.
+- Database failures.
+- Authentication failures.
+- Model evaluation results.
+
+This is how you detect actual failures instead of assuming everything is working because the dashboard loads.
+
+# 8. The AI model system: Gemini, other models and fallback
+
+A universal platform should not depend on one AI provider for every task.
+
+## Model Gateway
+
+The Model Gateway is a shared backend service that hides provider-specific differences from the rest of SARVAGYA.
+
+It should support:
+
+1. A registry of configured models and their capabilities.
+2. A common interface for supported requests.
+3. Provider-specific adapters.
+4. Streaming and non-streaming responses.
+5. Tool-call translation.
+6. Usage and cost tracking.
+7. Timeouts, rate-limit handling and retries.
+8. Provider health checks.
+9. Model selection and fallback.
+10. Consistent error reporting.
+
+### What fallback should do
+
+Suppose the primary provider returns a rate-limit error.
+
+SARVAGYA should:
+
+- Identify the failure.
+- Check whether it is transient or caused by quota exhaustion.
+- Retry only when appropriate.
+- Select an alternative model if one is configured and compatible.
+- Preserve the request's context and output requirements.
+- Clearly indicate if the result comes from a different model.
+- Report failure if no valid provider is available.
+
+A provider fallback must not quietly substitute fake data or a fabricated AI answer.
+
+If SARVAGYA uses a simulated stock price because live data is unavailable, the interface must label it as simulated rather than presenting it as a real market quote.
+
+### Important Gemini limitation
+
+Google Gemini can supply model capabilities through the APIs available to your account, but it does not automatically supply every modality, tool or feature you might imagine. Exact model capabilities, quotas and API support depend on the configured model and current provider documentation.
+
+Build a capability registry so the interface can disable unsupported operations instead of pretending they work.
+
+# 9. AI memory, knowledge and personalization in depth
+
+Memory is one of the most valuable additions because it connects sessions, modules and projects.
+
+However, memory must be designed carefully.
+
+## The three memory layers
+
+Layer 1: Episodic context
+
+What happened in a conversation or project session: recent decisions, open questions and unfinished tasks.
+
+Layer 2: Semantic knowledge
+
+Facts and concepts retrieved from indexed documents and trusted sources, with provenance and timestamps.
+
+Layer 3: User and project preferences
+
+User-approved preferences, project constraints, chosen workflows and relevant recurring context.
+
+### A practical memory record
+
+A stored memory should have more structure than a sentence in a text file.
+
+For example:
+
+- `memory_id`: unique identifier.
+- `owner_id`: account or workspace owner.
+- `type`: preference, project decision, fact or task context.
+- `content`: stored information.
+- `source`: where it came from.
+- `created_at`: creation time.
+- `updated_at`: last modification.
+- `confidence`: confidence when meaningfully measurable.
+- `expires_at`: optional expiry.
+- `permissions`: permitted uses.
+- `status`: active, superseded or deleted.
+
+Avoid storing sensitive information unless it is necessary and explicitly permitted. Provide a way to correct wrong memories and ensure deletion actually propagates to relevant indexes and derived copies.
+
+## Knowledge graphs
+
+A knowledge graph connects entities and relationships rather than storing everything as unrelated documents.
+
+For a coding project, it might connect:
+
+`Project → uses → Model Provider`
+
+`Project → contains → WebSocket Service`
+
+`WebSocket Service → emits → Task Events`
+
+This allows more useful project-aware retrieval. The graph must still distinguish verified relationships from AI-generated hypotheses.
+
+# 10. Make every module work together
+
+The following examples show what a genuinely integrated platform can do.
+
+## Workflow A: Student Hub + Web Navigator + AI Workspace
+
+1. The user chooses a topic.
+2. Web Navigator retrieves relevant material.
+3. The AI checks source relevance and publication details.
+4. Student Hub creates a summary and practice questions.
+5. AI Workspace saves the notes.
+6. The planner proposes a revision schedule.
+7. The user reviews and accepts the schedule.
+8. Progress updates the Student Hub dashboard.
+
+## Workflow B: Job & Business + Creator Studio + AI Workspace
+
+1. The user provides a business idea.
+2. Web Navigator researches the market.
+3. The system identifies assumptions and evidence gaps.
+4. The business module drafts a plan.
+5. Creator Studio produces a presentation.
+6. AI Workspace stores the plan and presentation.
+7. The user reviews the documents and decides what to share.
+
+## Workflow C: Stock Market + Web Navigator + Notifications
+
+1. The user selects a company or index.
+2. The data service retrieves market information.
+3. The news service retrieves relevant announcements.
+4. SARVAGYA separates verified figures from commentary.
+5. The user configures an alert threshold.
+6. A scheduled worker checks data according to the provider's limits.
+7. A notification is sent when the rule is satisfied.
+
+Market alerts should be informational, not automatic buy or sell instructions.
+
+## Workflow D: Creator Studio + Developer Hub
+
+1. The user describes a website.
+2. The AI proposes the pages and design.
+3. Developer Hub generates the code.
+4. A sandbox runs tests and checks errors.
+5. The preview displays the result.
+6. The user requests revisions.
+7. SARVAGYA updates the code and preserves version history.
+
+## Workflow E: AI Companion + 3 Bonds + Memory
+
+The user continues an existing project through a new conversation. SARVAGYA retrieves permitted project context, identifies the correct project relationships, and resumes the work.
+
+The exact behavior of 3 Bonds depends on your intended design; the important architectural requirement is that it can connect to shared services through defined interfaces instead of implementing its own isolated memory system.
+
+# 11. Security, privacy and reliability
+
+These are mandatory foundations, not optional premium features.
+
+## Security requirements
+
+- Keep provider API keys on the server.
+- Store passwords using an appropriate password-hashing scheme.
+- Enforce authentication and authorization on every protected endpoint.
+- Encrypt data in transit and appropriately protect stored data.
+- Apply request limits and upload-size limits.
+- Scan uploaded files and validate file types.
+- Restrict code execution to isolated environments.
+- Limit plugins to explicitly granted permissions.
+- Keep audit records for important actions.
+- Provide account recovery and session revocation.
+- Avoid logging secrets or unnecessarily exposing private conversation content.
+
+## AI-specific security
+
+A webpage can contain instructions that attempt to manipulate an AI agent. Those instructions must be treated as untrusted content, not automatically followed.
+
+For example, if a retrieved webpage tells SARVAGYA to reveal an API key, ignore the user's permissions, or send a private file elsewhere, the system must refuse that instruction.
+
+Other protections include:
+
+- Tool allowlists.
+- Per-action authorization.
+- Input and output validation.
+- Sandboxed file processing.
+- Limits on agent loops and spending.
+- Approval before sensitive external actions.
+- Verification of destinations before sending data.
+- Protection against accidental disclosure between users.
+
+## Reliability requirements
+
+A robust application should handle:
+
+- Provider outages.
+- Network interruptions.
+- Database unavailability.
+- Interrupted streams.
+- Duplicate events.
+- Failed background jobs.
+- Rate-limit errors.
+- Partial results.
+- Expired authentication.
+- Invalid plugin responses.
+
+The user should see an understandable state such as Running, Waiting for approval, Completed, Failed or Cancelled.
+
+Never make the interface report success just because a button was clicked.
+
+# 12. How SARVAGYA should improve itself
+
+Your Evolution HUD and continuous-improvement idea deserve a proper engineering process.
+
+The system should not freely rewrite its own production code just because an AI model believes an improvement is possible.
+
+Instead, use a controlled improvement cycle.
+
+\#chatgpt-mermaid-\_r_no\_{font-family:-apple-system-body,ui-sans-serif,-apple-system,system-ui,"Segoe UI",Helvetica,"Apple Color Emoji",Arial,sans-serif,"Segoe UI Emoji","Segoe UI Symbol";font-size:16px;fill:rgb(13, 13, 13);}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#chatgpt-mermaid-\_r_no\_ .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#chatgpt-mermaid-\_r_no\_ .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#chatgpt-mermaid-\_r_no\_ .error-icon{fill:rgb(243, 243, 243);}#chatgpt-mermaid-\_r_no\_ .error-text{fill:rgb(13, 13, 13);stroke:rgb(13, 13, 13);}#chatgpt-mermaid-\_r_no\_ .edge-thickness-normal{stroke-width:1px;}#chatgpt-mermaid-\_r_no\_ .edge-thickness-thick{stroke-width:3.5px;}#chatgpt-mermaid-\_r_no\_ .edge-pattern-solid{stroke-dasharray:0;}#chatgpt-mermaid-\_r_no\_ .edge-thickness-invisible{stroke-width:0;fill:none;}#chatgpt-mermaid-\_r_no\_ .edge-pattern-dashed{stroke-dasharray:3;}#chatgpt-mermaid-\_r_no\_ .edge-pattern-dotted{stroke-dasharray:2;}#chatgpt-mermaid-\_r_no\_ .marker{fill:rgb(143, 143, 143);stroke:rgb(143, 143, 143);}#chatgpt-mermaid-\_r_no\_ .marker.cross{stroke:rgb(143, 143, 143);}#chatgpt-mermaid-\_r_no\_ svg{font-family:-apple-system-body,ui-sans-serif,-apple-system,system-ui,"Segoe UI",Helvetica,"Apple Color Emoji",Arial,sans-serif,"Segoe UI Emoji","Segoe UI Symbol";font-size:16px;}#chatgpt-mermaid-\_r_no\_ p{margin:0;}#chatgpt-mermaid-\_r_no\_ .label{font-family:-apple-system-body,ui-sans-serif,-apple-system,system-ui,"Segoe UI",Helvetica,"Apple Color Emoji",Arial,sans-serif,"Segoe UI Emoji","Segoe UI Symbol";color:rgb(13, 13, 13);}#chatgpt-mermaid-\_r_no\_ .cluster-label text{fill:rgb(13, 13, 13);}#chatgpt-mermaid-\_r_no\_ .cluster-label span{color:rgb(13, 13, 13);}#chatgpt-mermaid-\_r_no\_ .cluster-label span p{background-color:transparent;}#chatgpt-mermaid-\_r_no\_ .label text,#chatgpt-mermaid-\_r_no\_ span{fill:rgb(13, 13, 13);color:rgb(13, 13, 13);}#chatgpt-mermaid-\_r_no\_ .node rect,#chatgpt-mermaid-\_r_no\_ .node circle,#chatgpt-mermaid-\_r_no\_ .node ellipse,#chatgpt-mermaid-\_r_no\_ .node polygon,#chatgpt-mermaid-\_r_no\_ .node path{fill:rgb(222, 234, 251);stroke:rgb(83, 154, 248);stroke-width:1px;}#chatgpt-mermaid-\_r_no\_ .rough-node .label text,#chatgpt-mermaid-\_r_no\_ .node .label text,#chatgpt-mermaid-\_r_no\_ .image-shape .label,#chatgpt-mermaid-\_r_no\_ .icon-shape .label{text-anchor:middle;}#chatgpt-mermaid-\_r_no\_ .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#chatgpt-mermaid-\_r_no\_ .rough-node .label,#chatgpt-mermaid-\_r_no\_ .node .label,#chatgpt-mermaid-\_r_no\_ .image-shape .label,#chatgpt-mermaid-\_r_no\_ .icon-shape .label{text-align:center;}#chatgpt-mermaid-\_r_no\_ .node.clickable{cursor:pointer;}#chatgpt-mermaid-\_r_no\_ .root .anchor path{fill:rgb(143, 143, 143)!important;stroke-width:0;stroke:rgb(143, 143, 143);}#chatgpt-mermaid-\_r_no\_ .arrowheadPath{fill:rgb(143, 143, 143);}#chatgpt-mermaid-\_r_no\_ .edgePath .path{stroke:rgb(143, 143, 143);stroke-width:1px;}#chatgpt-mermaid-\_r_no\_ .flowchart-link{stroke:rgb(143, 143, 143);fill:none;}#chatgpt-mermaid-\_r_no\_ .edgeLabel{background-color:rgb(252, 252, 252);text-align:center;}#chatgpt-mermaid-\_r_no\_ .edgeLabel p{background-color:rgb(252, 252, 252);}#chatgpt-mermaid-\_r_no\_ .edgeLabel rect{opacity:0.5;background-color:rgb(252, 252, 252);fill:rgb(252, 252, 252);}#chatgpt-mermaid-\_r_no\_ .labelBkg{background-color:rgba(252, 252, 252, 0.5);}#chatgpt-mermaid-\_r_no\_ .cluster rect{fill:rgb(243, 243, 243);stroke:rgba(0, 0, 0, 0.1);stroke-width:1px;}#chatgpt-mermaid-\_r_no\_ .cluster text{fill:rgb(13, 13, 13);}#chatgpt-mermaid-\_r_no\_ .cluster span{color:rgb(13, 13, 13);}#chatgpt-mermaid-\_r_no\_ div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:-apple-system-body,ui-sans-serif,-apple-system,system-ui,"Segoe UI",Helvetica,"Apple Color Emoji",Arial,sans-serif,"Segoe UI Emoji","Segoe UI Symbol";font-size:12px;background:rgb(243, 243, 243);border:1px solid rgba(0, 0, 0, 0.1);border-radius:2px;pointer-events:none;z-index:100;}#chatgpt-mermaid-\_r_no\_ .flowchartTitleText{text-anchor:middle;font-size:18px;fill:rgb(13, 13, 13);}#chatgpt-mermaid-\_r_no\_ rect.text{fill:none;stroke-width:0;}#chatgpt-mermaid-\_r_no\_ .icon-shape,#chatgpt-mermaid-\_r_no\_ .image-shape{background-color:rgb(252, 252, 252);text-align:center;}#chatgpt-mermaid-\_r_no\_ .icon-shape p,#chatgpt-mermaid-\_r_no\_ .image-shape p{background-color:rgb(252, 252, 252);padding:2px;}#chatgpt-mermaid-\_r_no\_ .icon-shape .label rect,#chatgpt-mermaid-\_r_no\_ .image-shape .label rect{opacity:0.5;background-color:rgb(252, 252, 252);fill:rgb(252, 252, 252);}#chatgpt-mermaid-\_r_no\_ .label-icon{display:inline-block;height:1em;overflow:visible;vertical-align:-0.125em;}#chatgpt-mermaid-\_r_no\_ .node .label-icon path{fill:currentColor;stroke:revert;stroke-width:revert;}#chatgpt-mermaid-\_r_no\_ .node .neo-node{stroke:rgb(83, 154, 248);}#chatgpt-mermaid-\_r_no\_ [data-look="neo"].node rect,#chatgpt-mermaid-\_r_no\_ [data-look="neo"].cluster rect,#chatgpt-mermaid-\_r_no\_ [data-look="neo"].node polygon{stroke:url(#chatgpt-mermaid-\_r_no\_-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#chatgpt-mermaid-\_r_no\_ [data-look="neo"].swimlane.cluster rect{filter:none;}#chatgpt-mermaid-\_r_no\_ [data-look="neo"].node path{stroke:url(#chatgpt-mermaid-\_r_no\_-gradient);stroke-width:1px;}#chatgpt-mermaid-\_r_no\_ [data-look="neo"].node .outer-path{filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#chatgpt-mermaid-\_r_no\_ [data-look="neo"].node .neo-line path{stroke:rgb(83, 154, 248);filter:none;}#chatgpt-mermaid-\_r_no\_ [data-look="neo"].node circle{stroke:url(#chatgpt-mermaid-\_r_no\_-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#chatgpt-mermaid-\_r_no\_ [data-look="neo"].node circle .state-start{fill:#000000;}#chatgpt-mermaid-\_r_no\_ [data-look="neo"].icon-shape .icon{fill:url(#chatgpt-mermaid-\_r_no\_-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#chatgpt-mermaid-\_r_no\_ [data-look="neo"].icon-shape .icon-neo path{stroke:url(#chatgpt-mermaid-\_r_no\_-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#chatgpt-mermaid-\_r_no\_ .node text{font-size:14px;font-weight:600;letter-spacing:normal;fill:rgb(0, 79, 153);}#chatgpt-mermaid-\_r_no\_ .edgeLabels text{font-size:13px;font-weight:600;letter-spacing:-0.08px;fill:rgb(0, 79, 153);}#chatgpt-mermaid-\_r_no\_ .node tspan[font-weight="normal"],#chatgpt-mermaid-\_r_no\_ .edgeLabels tspan[font-weight="normal"]{font-weight:600;}#chatgpt-mermaid-\_r_no\_ .edgeLabel .label rect{opacity:1;rx:13px;ry:13px;fill:rgb(245, 250, 255);stroke:rgb(206, 219, 229);stroke-width:1px;}#chatgpt-mermaid-\_r_no\_ .node rect,#chatgpt-mermaid-\_r_no\_ .node circle,#chatgpt-mermaid-\_r_no\_ .node ellipse,#chatgpt-mermaid-\_r_no\_ .node polygon,#chatgpt-mermaid-\_r_no\_ .node path{fill:rgb(229, 243, 255);stroke:rgba(0, 0, 0, 0.1);stroke-width:1px;}#chatgpt-mermaid-\_r_no\_ .node rect{rx:16px;ry:16px;}#chatgpt-mermaid-\_r_no\_ .node.mermaid-decision .label-container{fill:rgb(245, 250, 255);stroke:rgb(206, 219, 229);stroke-dasharray:2,2;}#chatgpt-mermaid-\_r_no\_ .edgePaths .flowchart-link{stroke:rgb(143, 143, 143);stroke-width:1px;stroke-linecap:round;stroke-linejoin:round;}#chatgpt-mermaid-\_r_no\_ .marker{fill:rgb(143, 143, 143);stroke:rgb(143, 143, 143);}#chatgpt-mermaid-\_r_no\_ :root{--mermaid-font-family:-apple-system-body,ui-sans-serif,-apple-system,system-ui,"Segoe UI",Helvetica,"Apple Color Emoji",Arial,sans-serif,"Segoe UI Emoji","Segoe UI Symbol";}Collect Operational MetricsIdentify Repeated ProblemsPropose ImprovementCreate Testable ChangeRun Automated TestsEvaluate Quality, Safety andCostPasses All Gates?Reject or ReviseHuman Review for SignificantChangesStaged DeploymentMonitor ProductionHealthy?RollbackRecord Validated VersionNoYesNoYes
+
+### Four kinds of improvement
+
+Knowledge improvement: add new, properly sourced information to the retrieval index.
+
+Workflow improvement: improve task planning, routing, caching and retries based on measured results.
+
+Model improvement: evaluate model configurations, prompts and supported fine-tuning processes against fixed benchmarks.
+
+Software improvement: create code changes, test them in a controlled environment, review them, deploy them in stages and retain rollback capability.
+
+A successful system does not need to change its code every second. It needs to identify useful improvements, validate them and avoid regressions.
+
+# 13. What the dashboard should actually show
+
+The dashboard should answer five questions immediately:
+
+1. What can I do?
+2. What was I working on?
+3. What is happening right now?
+4. What needs my attention?
+5. Is the system working correctly?
+
+A strong layout would include:
+
+## SARVAGYA
+
+Intelligence workspace
+
+UNIVERSAL COMMAND CENTER
+
+What would you like SARVAGYA to do?
+
+Research
+
+Study
+
+Create
+
+Code
+
+### Active tasks
+
+Progress, approvals and failures
+
+### Recent projects
+
+Continue where you left off
+
+### Live intelligence
+
+Source status and update times
+
+### System health
+
+Errors, latency and provider status
+
+### Recent activity
+
+Research document created
+
+Example activity item
+
+Task awaiting approval
+
+Example activity item
+
+Illustrative layout, not a live connection to your application.
+
+The actual dashboard should use real backend data for every status, count and event. If data is unavailable, display Unknown or Unavailable rather than a made-up number.
+
+# 14. The development roadmap: what to build first
+
+The biggest risk in SARVAGYA is attempting to build every module at once. A large feature list is not the same as a reliable product.
+
+I would develop it in six stages.
+
+## 01
+
+### Foundation and stability
+
+First priority
+
+- Reliable login and session management.
+- Consistent API structure.
+- Working database and migrations.
+- Frontend/backend error handling.
+- WebSocket reconnection and streaming.
+- Secure API-key management.
+- Logging and health checks.
+
+Exit condition: the application can be restarted, users can reconnect, and core data is not lost.
+
+## 02
+
+### Intelligence and research
+
+- Model Gateway for Gemini and other configured providers.
+- AI Companion streaming.
+- Web Navigator with source links.
+- Document upload and analysis.
+- Shared tool interface.
+- Model fallback and usage tracking.
+
+Exit condition: real requests produce useful responses, sources are traceable, and provider failures are handled correctly.
+
+## 03
+
+### Memory and integration
+
+- User-approved memory.
+- Project-specific context.
+- Knowledge indexing and retrieval.
+- Universal Command Center.
+- Shared artifacts and workspace.
+- Cross-module navigation.
+
+Exit condition: users can continue projects and reuse results across modules.
+
+## 04
+
+### Agents and automation
+
+- Durable background-job queue.
+- Task planning and tool execution.
+- Scheduling and notifications.
+- Approval flows.
+- Retry, cancellation and audit history.
+
+Exit condition: multi-step tasks survive page refreshes and recover safely from common failures.
+
+## 05
+
+### Complete the product modules
+
+- Student Hub.
+- Creator Studio.
+- Interactive Labs.
+- Maps & Weather.
+- Space & Transit.
+- Job & Business.
+- Stock Market.
+- Developer Hub.
+- Plugin Center.
+
+Exit condition: each feature uses real data or real functionality and has meaningful error states.
+
+## 06
+
+### Evolution and scale
+
+- Evaluation benchmarks.
+- Cost and performance optimization.
+- Improved monitoring.
+- Controlled software upgrades.
+- Load and security testing.
+- Mobile/PWA improvements.
+- More providers and integrations.
+
+Exit condition: updates are measured, tested, reversible and monitored in production.
+
+These stages are ordered by dependency, not by a promised delivery schedule. Their duration depends on the existing codebase, available resources, provider access and testing results.
+
+## What should be postponed?
+
+Do not start with unrestricted autonomous coding, dozens of model providers, a giant plugin marketplace, continuous model training, or a hundred separate AI tools.
+
+First make the core reliable. Then add capabilities that reuse that foundation.
+
+# 15. How to know whether each feature is genuinely complete
+
+Every module needs an explicit definition of done.
+
+For example, a Web Navigator is not finished merely because it has a search box. It is finished when its expected workflow works from beginning to end.
+
+| Module         | Minimum proof of completion                               |
+| -------------- | --------------------------------------------------------- |
+| AI Companion   | Real provider response, streaming, errors and history     |
+| Web Navigator  | Search, relevant retrieval, source links and timestamps   |
+| Memory         | Save, retrieve, correct and delete with access controls   |
+| Student Hub    | Persisted notes, working tests and accurate progress      |
+| Creator Studio | Real supported generation or editing workflow             |
+| AI Agents      | Durable jobs, permissions, retries and completion records |
+| Stock Market   | Clearly sourced data with accurate freshness labels       |
+| Plugin Center  | Installation, permission checks, execution and revocation |
+| Evolution HUD  | Actual system metrics and recorded evaluation results     |
+| Settings       | Changes persist and are enforced by the backend           |
+
+For each module, test normal operation, invalid input, provider failure, lost connection, missing permission, repeated requests and data recovery.
+
+A feature that looks finished but cannot pass these tests should be considered a prototype, not a production-ready capability.
+
+# 16. Your earlier code and the current blueprint
+
+One important distinction: we previously discussed your SARVAGYA implementation, including its Express/Vite setup, WebSocket reliability, background agents, Gemini integration, web intelligence and automatic feed ingestion.
+
+The previous design notes described mechanisms such as request IDs, event sequencing, reconnection, persistent jobs and RSS ingestion. They also noted that complete dependency and build verification had not been finished.
+
+Therefore, I cannot responsibly claim that every part is currently working, that the entire project compiles, or that the system already receives every new fact automatically. Those claims require inspecting and testing the current project files.
+
+The right next step is to compare the existing implementation against this blueprint:
+
+- Keep features that already work.
+- Repair broken or incomplete systems.
+- Connect isolated modules to shared services.
+- Add missing capabilities in dependency order.
+- Verify every important claim with actual tests.
+
+That is much more effective than repeatedly generating new versions of the application without checking what the existing code already does.
+
+# 17. The final master specification
+
+If I were defining SARVAGYA's permanent product direction, I would use the following specification.
+
+# SARVAGYA AI OS
+
+Universal AI • Connected knowledge • Personal intelligence • Reliable automation
+
+1\. Intelligence Core
+
+A shared orchestration layer for reasoning, model selection, tool use and response validation.
+
+2\. Live Intelligence Engine
+
+Authorized web search, connected data sources, scheduled ingestion, source tracking and fresh information retrieval.
+
+3\. Memory & Knowledge Engine
+
+Conversation context, approved user memory, project memory, document retrieval and knowledge relationships.
+
+4\. Agent & Automation Engine
+
+Multi-step planning, background jobs, schedules, approval workflows, retries and durable task state.
+
+5\. Unified Workspace
+
+One environment for chats, documents, notes, tasks, files, projects and generated artifacts.
+
+6\. Multimodal Creation Engine
+
+Text, image, audio, video, document and code workflows, depending on the capabilities of configured providers.
+
+7\. Specialized Modules
+
+Your existing Student Hub, Maps & Weather, Space & Transit, Web Navigator, Interactive Labs, Creator Studio, Job & Business and Stock Market modules.
+
+8\. Extension Platform
+
+Model adapters, plugins, API integrations and controlled external tools.
+
+9\. Trust & Security Layer
+
+Authentication, authorization, privacy controls, audit logs, secure tool execution and data management.
+
+10\. Evolution Engine
+
+Monitoring, evaluations, performance analysis, tested improvements, controlled releases and rollback.
+
+## The five non-negotiable principles
+
+1. One shared intelligence layer: every module should use common services instead of building its own disconnected AI.
+2. Real information: live data must come from real, authorized sources with clear timestamps and appropriate citations.
+3. Persistent operation: important background jobs and project state must survive page refreshes, connection loss and server restarts.
+4. Controlled evolution: memory and knowledge can update continuously; changes to models, prompts and software must be evaluated and appropriately approved.
+5. Trustworthy behavior: SARVAGYA must distinguish real results from simulations, disclose uncertainty, protect user data and report failures honestly.
+
+## My final priority ranking
+
+### 01
+
+Reliable Core Systems
+
+Database, API, authentication, WebSockets and monitoring
+
+### 02
+
+Intelligence Core + Model Gateway
+
+Gemini, other configured models, routing and fallback
+
+### 03
+
+Web Intelligence + Knowledge
+
+Current research, citations, ingestion and retrieval
+
+### 04
+
+Memory + Universal Command Center
+
+Project continuity and one interface for all modules
+
+### 05
+
+Agents + Automation
+
+Durable jobs, workflows and approved actions
+
+### 06
+
+AI Workspace + Developer Hub
+
+Create, organize, code, test and reuse work
+
+### 07
+
+Complete Specialized Modules
+
+Education, creative tools, science, career and finance
+
+### 08
+
+Evolution HUD + Controlled Improvement
+
+Real measurements, evaluations and tested releases
+
+## The final vision
+
+SARVAGYA should become a platform where a user can ask a question, research it using current information, understand the evidence, create something useful, save the result, automate the next step, and continue later without losing the context.
+
+It should feel like one connected system—not a collection of tools with an AI label.
+
+And the most important engineering decision is this: build the shared intelligence, memory, data and automation foundations first. Those foundations will make every existing module more powerful and every future module easier to build.
+
+That is the complete direction I would use for SARVAGYA: ambitious in capability, practical in architecture, and honest about what is actually working.

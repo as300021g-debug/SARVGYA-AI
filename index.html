@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SARVAGYA AI — Universal Super-Intelligence Platform | Created by Aryan Sharma</title>
+    <meta property="og:title" content="SARVAGYA AI — Universal Super-Intelligence Platform | Created by Aryan Sharma" />
+    <meta name="description" content="The ultimate universal personal AI super-intelligence platform — Made in India and created by Aryan Sharma. Unifies Google Gemini, OpenAI GPT-6 Astra, Anthropic Claude Opus 5.5, DeepSeek V4 Pro, live planetary satellite maps, global flight tracking, IRCTC live railway telemetry, and real-time quantitative market intelligence." />
+    <meta property="og:description" content="The ultimate universal personal AI super-intelligence platform — Made in India and created by Aryan Sharma. Unifies Google Gemini, OpenAI GPT-6 Astra, Anthropic Claude Opus 5.5, DeepSeek V4 Pro, live planetary satellite maps, global flight tracking, IRCTC live railway telemetry, and real-time quantitative market intelligence." />
+    <script>
+      // Suppress Vite HMR WebSocket connection notices in cloud iframe environment
+      (function() {
+        var origConsoleError = console.error;
+        console.error = function() {
+          var msg = Array.prototype.slice.call(arguments).map(function(a) {
+            return (a && a.message) || String(a);
+          }).join(' ');
+          if (msg.indexOf('WebSocket') !== -1 || msg.indexOf('websocket') !== -1 || msg.indexOf('closed without opened') !== -1) {
+            return;
+          }
+          origConsoleError.apply(console, arguments);
+        };
+
+        window.addEventListener('unhandledrejection', function(event) {
+          var reason = event.reason && (event.reason.message || String(event.reason));
+          if (reason && (reason.indexOf('WebSocket') !== -1 || reason.indexOf('websocket') !== -1 || reason.indexOf('closed without opened') !== -1)) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+          }
+        });
+
+        window.addEventListener('error', function(event) {
+          var msg = event.message || '';
+          if (msg.indexOf('WebSocket') !== -1 || msg.indexOf('websocket') !== -1 || msg.indexOf('closed without opened') !== -1) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+          }
+        });
+      })();
+    </script>
+  </head>
+  <body class="bg-slate-950 text-slate-100 antialiased selection:bg-cyan-500/30 selection:text-cyan-200">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SARVAGYA AI — 5-in-1 Unified Assistant | Created by Aryan Sharma</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background-color: #070a12; color: #f1f5f9; font-family: system-ui, -apple-system, sans-serif; }
+    .glass { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(14px); border: 1px solid rgba(255, 255, 255, 0.08); }
+    .siri-glow { box-shadow: 0 0 20px rgba(168, 85, 247, 0.25), inset 0 0 15px rgba(59, 130, 246, 0.15); }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Top Bar: Ecosystem Status & API Key -->
+  <header class="glass sticky top-0 z-30 px-4 py-3 flex flex-wrap items-center justify-between gap-3 border-b border-slate-800">
+    <div class="flex items-center gap-3">
+      <div class="w-3.5 h-3.5 rounded-full bg-gradient-to-tr from-blue-400 via-purple-400 to-emerald-400 animate-pulse"></div>
+      <div>
+        <h1 class="text-base font-extrabold tracking-wide bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
+          SARVAGYA AI — 5-IN-1 SUPER ASSISTANT
+        </h1>
+        <p class="text-[11px] text-slate-400">Gemini + Google Assistant + Apple Intelligence + Galaxy AI + Alexa+ • By Aryan Sharma</p>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <input
+        id="apiKeyInput"
+        type="password"
+        placeholder="Paste Google AI Studio API Key"
+        class="px-3 py-1.5 text-xs rounded-lg bg-slate-950 border border-slate-700 text-white focus:outline-none focus:border-blue-500 w-52"
+      />
+      <button
+        onclick="saveKey()"
+        class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-blue-600 hover:bg-blue-500 text-white transition"
+      >
+        Connect
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Workspace -->
+  <main class="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-4 p-4 max-w-[1600px] w-full mx-auto">
+
+    <!-- Left Column: Apple Intelligence, Galaxy AI & Camera Vision (4 cols) -->
+    <aside class="lg:col-span-4 flex flex-col gap-4">
+
+      <!-- Apple Intelligence: Writing Tools & Summaries -->
+      <div class="glass rounded-2xl p-4 siri-glow flex flex-col gap-2.5">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold uppercase tracking-wider text-purple-300">Apple Intelligence • Writing Tools</span>
+          <span class="text-[10px] px-2 py-0.5 rounded bg-purple-950/80 text-purple-300 border border-purple-800">On-Demand</span>
+        </div>
+        <p class="text-[11px] text-slate-400">Type or paste text in the prompt box below, then click a tool to transform it:</p>
+        <div class="grid grid-cols-2 gap-1.5 text-xs">
+          <button onclick="runQuickTool('Proofread and fix all grammar in this text:')" class="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 transition">Proofread</button>
+          <button onclick="runQuickTool('Rewrite this text in a polished, Professional tone:')" class="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 transition">Professional Tone</button>
+          <button onclick="runQuickTool('Rewrite this text in a warm, Friendly tone:')" class="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 transition">Friendly Tone</button>
+          <button onclick="runQuickTool('Summarize this text into key executive bullet points:')" class="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 transition">Smart Summary</button>
+        </div>
+      </div>
+
+      <!-- Samsung Galaxy AI: Live Translate & Note Assist -->
+      <div class="glass rounded-2xl p-4 flex flex-col gap-2.5">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold uppercase tracking-wider text-blue-300">Samsung Galaxy AI • Interpreter</span>
+          <select id="targetLang" class="text-[11px] px-2 py-1 rounded bg-slate-900 border border-slate-700 text-slate-200">
+            <option value="Hindi">Hindi ↔ English</option>
+            <option value="Spanish">Spanish ↔ English</option>
+            <option value="French">French ↔ English</option>
+            <option value="Japanese">Japanese ↔ English</option>
+            <option value="German">German ↔ English</option>
+          </select>
+        </div>
+        <div class="grid grid-cols-2 gap-1.5 text-xs">
+          <button onclick="runInterpreter()" class="p-2 rounded-lg bg-blue-950/70 hover:bg-blue-900/70 border border-blue-800 text-blue-200 font-medium transition">
+            Live Translate Text
+          </button>
+          <button onclick="runQuickTool('Format these raw notes into structured headings, action items, and clean bullet points (Galaxy Note Assist):')" class="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 transition">
+            Note Assist Format
+          </button>
+        </div>
+      </div>
+
+      <!-- Visual Lookup / Circle to Search / Alexa Show & Tell Camera -->
+      <div class="glass rounded-2xl p-4 flex flex-col gap-2.5">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold uppercase tracking-wider text-emerald-300">Visual Lookup & Circle to Search</span>
+          <button id="camBtn" onclick="toggleCamera()" class="text-[11px] px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold transition">
+            Start Camera
+          </button>
+        </div>
+        <video id="videoFeed" autoplay playsinline class="w-full h-36 object-cover rounded-xl bg-black hidden border border-slate-800"></video>
+        <canvas id="frameCanvas" class="hidden"></canvas>
+        <button onclick="runQuickTool('Identify the object or text shown in my camera frame, explain what it is, and give helpful details:')" class="w-full py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs text-emerald-300 font-medium transition">
+          Analyze Camera Frame Now
+        </button>
+      </div>
+
+    </aside>
+
+    <!-- Center Column: Unified Gemini Conversational & Voice Hub (5 cols) -->
+    <section class="lg:col-span-5 glass rounded-2xl flex flex-col h-[80vh] overflow-hidden">
+      <!-- Sub-header controls -->
+      <div class="px-4 py-2.5 bg-slate-950/70 border-b border-slate-800 flex items-center justify-between text-xs">
+        <label class="flex items-center gap-2 cursor-pointer text-slate-300">
+          <input id="searchToggle" type="checkbox" checked class="accent-blue-500 w-3.5 h-3.5" />
+          <span>Gemini Live Google Search</span>
+        </label>
+        <div class="flex items-center gap-2">
+          <button id="voiceLoopBtn" onclick="toggleVoiceLoop()" class="px-2.5 py-1 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-[11px] transition">
+            Start 24/7 Voice
+          </button>
+          <button onclick="stopTTS()" class="px-2 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px] transition">
+            Mute
+          </button>
+        </div>
+      </div>
+
+      <!-- Chat Stream -->
+      <div id="chatBox" class="flex-1 overflow-y-auto p-4 space-y-3 text-xs">
+        <div class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800">
+          <p class="font-bold text-blue-400 mb-1">SARVAGYA 5-IN-1 ASSISTANT READY</p>
+          <p class="text-slate-300 leading-relaxed">
+            Try saying or typing:<br/>
+            • <em>"Turn on the living room lights and set the thermostat to 70"</em> (Alexa+ Smart Home)<br/>
+            • <em>"Add almonds and oat milk to my shopping list"</em> (Google Assistant)<br/>
+            • Or paste any paragraph below and click an <strong>Apple Intelligence</strong> or <strong>Galaxy AI</strong> button on the left!
+          </p>
+        </div>
+      </div>
+
+      <!-- Input Area -->
+      <div class="p-3 border-t border-slate-800 bg-slate-950/60 flex gap-2">
+        <textarea
+          id="promptInput"
+          rows="2"
+          placeholder="Ask anything, control smart home devices, or paste text to rewrite/translate..."
+          class="flex-1 p-2.5 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none focus:border-blue-500 resize-none"
+          onkeydown="if(event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); sendPrompt(); }"
+        ></textarea>
+        <button
+          id="sendBtn"
+          onclick="sendPrompt()"
+          class="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 font-bold text-xs text-white transition"
+        >
+          Send
+        </button>
+      </div>
+    </section>
+
+    <!-- Right Column: Amazon Alexa+ Smart Home & Google Assistant Utilities (3 cols) -->
+    <aside class="lg:col-span-3 flex flex-col gap-4">
+
+      <!-- Amazon Alexa+ Smart Home Controller -->
+      <div class="glass rounded-2xl p-4 flex flex-col gap-3">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold uppercase tracking-wider text-cyan-400">Amazon Alexa+ • Smart Home</span>
+          <span class="text-[10px] px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-800">Voice Synced</span>
+        </div>
+
+        <div class="space-y-2 text-xs">
+          <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-900/90 border border-slate-800">
+            <span class="text-slate-300">Living Room Lights</span>
+            <button id="stateLights" onclick="toggleLightsUI()" class="px-2.5 py-1 rounded bg-slate-800 text-slate-400 font-semibold">OFF</button>
+          </div>
+
+          <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-900/90 border border-slate-800">
+            <span class="text-slate-300">Smart Thermostat</span>
+            <span id="stateThermo" class="font-bold text-amber-400">72°F</span>
+          </div>
+
+          <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-900/90 border border-slate-800">
+            <span class="text-slate-300">Front Door Lock</span>
+            <span id="stateLock" class="px-2.5 py-1 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 font-semibold">LOCKED</span>
+          </div>
+
+          <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-900/90 border border-slate-800">
+            <span class="text-slate-300">Active Routine</span>
+            <span id="stateRoutine" class="text-indigo-300 font-medium">None</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Google Assistant: Quick Timer & Shopping List -->
+      <div class="glass rounded-2xl p-4 flex flex-col gap-3 flex-1">
+        <span class="text-xs font-bold uppercase tracking-wider text-amber-400">Google Assistant • Tasks & Timer</span>
+
+        <!-- Countdown Timer -->
+        <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 flex items-center justify-between text-xs">
+          <span id="timerDisplay" class="font-mono text-base font-bold text-white">00:00</span>
+          <div class="flex gap-1">
+            <button onclick="startTimer(60)" class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200">1m</button>
+            <button onclick="startTimer(300)" class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200">5m</button>
+            <button onclick="clearTimer()" class="px-2 py-1 rounded bg-rose-950 text-rose-300">Reset</button>
+          </div>
+        </div>
+
+        <!-- Keep / Shopping List -->
+        <div class="flex-1 flex flex-col">
+          <p class="text-[11px] font-semibold text-slate-400 mb-1.5">Voice & Assistant Shopping List:</p>
+          <ul id="shoppingList" class="space-y-1.5 text-xs text-slate-200 flex-1 overflow-y-auto">
+            <li class="p-2 rounded bg-slate-900/70 border border-slate-800 flex justify-between">
+              <span>Milk & Bread</span>
+              <button onclick="this.parentElement.remove()" class="text-slate-500 hover:text-rose-400">✕</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </aside>
+
+  </main>
+
+  <script>
+    let apiKey = localStorage.getItem('SARVAGYA_KEY') || '';
+    if (apiKey) document.getElementById('apiKeyInput').value = apiKey;
+
+    let chatHistory = [];
+    let cameraStream = null;
+    let recognition = null;
+    let voiceLoop = false;
+    let timerInterval = null;
+
+    function saveKey() {
+      apiKey = document.getElementById('apiKeyInput').value.trim();
+      localStorage.setItem('SARVAGYA_KEY', apiKey);
+      addBubble('SYSTEM', 'Google AI Studio API Key saved.');
+    }
+
+    // Smart Home & Assistant UI Updaters
+    function toggleLightsUI(forceState) {
+      const btn = document.getElementById('stateLights');
+      const turnOn = forceState ? forceState === 'on' : btn.textContent === 'OFF';
+      btn.textContent = turnOn ? 'ON' : 'OFF';
+      btn.className = turnOn
+        ? 'px-2.5 py-1 rounded bg-amber-500 text-slate-950 font-bold shadow-lg shadow-amber-500/30'
+        : 'px-2.5 py-1 rounded bg-slate-800 text-slate-400 font-semibold';
+    }
+
+    function addListItem(itemText) {
+      if (!itemText) return;
+      const ul = document.getElementById('shoppingList');
+      const li = document.createElement('li');
+      li.className = 'p-2 rounded bg-slate-900/70 border border-slate-800 flex justify-between';
+      li.innerHTML = `<span>${itemText}</span><button onclick="this.parentElement.remove()" class="text-slate-500 hover:text-rose-400">✕</button>`;
+      ul.appendChild(li);
+    }
+
+    function startTimer(seconds) {
+      clearInterval(timerInterval);
+      let remaining = seconds;
+      const display = document.getElementById('timerDisplay');
+      const update = () => {
+        const m = String(Math.floor(remaining / 60)).padStart(2, '0');
+        const s = String(remaining % 60).padStart(2, '0');
+        display.textContent = `${m}:${s}`;
+      };
+      update();
+      timerInterval = setInterval(() => {
+        remaining--;
+        update();
+        if (remaining <= 0) {
+          clearInterval(timerInterval);
+          speak('Your Google Assistant timer is complete.');
+        }
+      }, 1000);
+    }
+
+    function clearTimer() {
+      clearInterval(timerInterval);
+      document.getElementById('timerDisplay').textContent = '00:00';
+    }
+
+    // Apple Intelligence & Galaxy AI Quick Action Runners
+    function runQuickTool(prefixInstruction) {
+      const input = document.getElementById('promptInput');
+      const currentText = input.value.trim();
+      input.value = currentText ? `${prefixInstruction}\n\n"${currentText}"` : prefixInstruction;
+      sendPrompt();
+    }
+
+    function runInterpreter() {
+      const lang = document.getElementById('targetLang').value;
+      const input = document.getElementById('promptInput');
+      const text = input.value.trim();
+      if (!text) {
+        alert('Type or speak a sentence in the box first to translate.');
+        return;
+      }
+      input.value = `Galaxy AI Interpreter Mode: Translate the following text between English and ${lang}. Provide both the translated script and a natural phonetic pronunciation guide:\n\n"${text}"`;
+      sendPrompt(true);
+    }
+
+    // Camera Vision
+    async function toggleCamera() {
+      const video = document.getElementById('videoFeed');
+      const btn = document.getElementById('camBtn');
+      if (cameraStream) {
+        cameraStream.getTracks().forEach(t => t.stop());
+        cameraStream = null;
+        video.classList.add('hidden');
+        btn.textContent = 'Start Camera';
+      } else {
+        try {
+          cameraStream = await navigator.mediaDevices.getUserMedia({ video: true });
+          video.srcObject = cameraStream;
+          video.classList.remove('hidden');
+          btn.textContent = 'Stop Camera';
+        } catch (err) {
+          alert('Camera error: ' + err.message);
+        }
+      }
+    }
+
+    function grabCameraBase64() {
+      const video = document.getElementById('videoFeed');
+      if (!cameraStream || video.classList.contains('hidden')) return null;
+      const canvas = document.getElementById('frameCanvas');
+      canvas.width = video.videoWidth || 640;
+      canvas.height = video.videoHeight || 480;
+      canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+      return canvas.toDataURL('image/jpeg', 0.8).split(',')[1];
+    }
+
+    // 24/7 Voice Loop
+    function toggleVoiceLoop() {
+      const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SR) return alert('Use Chrome or Edge for Web Speech API.');
+      const btn = document.getElementById('voiceLoopBtn');
+
+      if (voiceLoop) {
+        voiceLoop = false;
+        if (recognition) recognition.stop();
+        btn.textContent = 'Start 24/7 Voice';
+        btn.className = 'px-2.5 py-1 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-[11px] transition';
+        return;
+      }
+
+      recognition = new SR();
+      recognition.continuous = true;
+      recognition.interimResults = false;
+      recognition.lang = 'en-US';
+
+      recognition.onresult = (e) => {
+        const transcript = e.results[e.results.length - 1][0].transcript.trim();
+        if (transcript) {
+          document.getElementById('promptInput').value = transcript;
+          sendPrompt(true);
+        }
+      };
+
+      recognition.onend = () => {
+        if (voiceLoop) {
+          try { recognition.start(); } catch (err) {}
+        }
+      };
+
+      voiceLoop = true;
+      btn.textContent = 'Listening Live...';
+      btn.className = 'px-2.5 py-1 rounded-lg bg-emerald-600 text-white font-semibold text-[11px] transition';
+      recognition.start();
+    }
+
+    function speak(text) {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const clean = text.replace(/```[\s\S]*?```/g, '').replace(/[*#`_~]/g, '');
+      const u = new SpeechSynthesisUtterance(clean.slice(0, 450));
+      window.speechSynthesis.speak(u);
+    }
+
+    function stopTTS() {
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+    }
+
+    function addBubble(sender, text, sources = []) {
+      const box = document.getElementById('chatBox');
+      const div = document.createElement('div');
+      const isUser = sender === 'YOU';
+      div.className = `p-3.5 rounded-xl border ${
+        isUser ? 'bg-blue-950/40 border-blue-800/60 ml-8' : 'bg-slate-900/90 border-slate-800 mr-8'
+      }`;
+
+      const cleanDisplay = text.replace(/```json[\s\S]*?```/g, '').trim();
+      div.innerHTML = `<p class="font-bold text-[10px] mb-1 ${isUser ? 'text-blue-300' : 'text-emerald-400'}">${sender}</p>
+                       <pre class="whitespace-pre-wrap font-sans text-slate-200 leading-relaxed">${cleanDisplay}</pre>`;
+
+      if (sources.length > 0) {
+        const srcWrap = document.createElement('div');
+        srcWrap.className = 'mt-2 pt-2 border-t border-slate-800 flex flex-wrap gap-1.5 text-[10px]';
+        sources.forEach(s => {
+          const a = document.createElement('a');
+          a.href = s.uri;
+          a.target = '_blank';
+          a.className = 'px-2 py-0.5 rounded bg-slate-950 text-blue-400 hover:underline border border-slate-800';
+          a.textContent = s.title || s.uri;
+          srcWrap.appendChild(a);
+        });
+        div.appendChild(srcWrap);
+      }
+
+      box.appendChild(div);
+      box.scrollTop = box.scrollHeight;
+    }
+
+    function parseDeviceActions(replyText) {
+      const match = replyText.match(/```json\s*([\s\S]*?)\s*```/);
+      if (!match) return;
+      try {
+        const parsed = JSON.parse(match[1]);
+        const act = parsed.device_action;
+        if (!act) return;
+        if (act.lights) toggleLightsUI(act.lights.toLowerCase());
+        if (act.thermostat) document.getElementById('stateThermo').textContent = `${act.thermostat}°F`;
+        if (act.lock) document.getElementById('stateLock').textContent = act.lock.toUpperCase();
+        if (act.routine) document.getElementById('stateRoutine').textContent = act.routine;
+        if (act.add_list) addListItem(act.add_list);
+      } catch (e) {}
+    }
+
+    async function sendPrompt(speakReply = false) {
+      const input = document.getElementById('promptInput');
+      const text = input.value.trim();
+      if (!text) return;
+      if (!apiKey) return alert('Paste your Google AI Studio API Key in the top-right corner and click Connect.');
+
+      input.value = '';
+      addBubble('YOU', text);
+
+      const parts = [{ text }];
+      const frame = grabCameraBase64();
+      if (frame) parts.push({ inline_data: { mime_type: 'image/jpeg', data: frame } });
+
+      chatHistory.push({ role: 'user', parts });
+
+      const sysPrompt = `You are SARVAGYA AI, created by Aryan Sharma, combining Google Gemini, Google Assistant, Apple Intelligence, Samsung Galaxy AI, and Amazon Alexa+.
+When the user asks to control smart home devices or add an item to their shopping list, execute their request conversationally AND append a JSON block at the very end of your reply in this exact format:
+\`\`\`json
+{"device_action": {"lights": "on", "thermostat": 70, "lock": "locked", "routine": "Movie Time", "add_list": "item"}}
+\`\`\`
+Only include keys in device_action that the user explicitly asked to change.`;
+
+      const payload = {
+        system_instruction: { parts: [{ text: sysPrompt }] },
+        contents: chatHistory
+      };
+
+      if (document.getElementById('searchToggle').checked) {
+        payload.tools = [{ google_search: {} }];
+      }
+
+      const btn = document.getElementById('sendBtn');
+      btn.disabled = true;
+      btn.textContent = '...';
+
+      try {
+        const res = await fetch(
+          `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(apiKey)}`,
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          }
+        );
+        const data = await res.json();
+        if (data.error) throw new Error(data.error.message);
+
+        const candidate = data.candidates?.[0];
+        const reply = candidate?.content?.parts?.map(p => p.text || '').join('\n') || 'Done.';
+        const chunks = candidate?.groundingMetadata?.groundingChunks || [];
+        const sources = chunks.filter(c => c.web?.uri).map(c => ({ title: c.web.title, uri: c.web.uri }));
+
+        chatHistory.push({ role: 'model', parts: [{ text: reply }] });
+        parseDeviceActions(reply);
+        addBubble('SARVAGYA AI', reply, sources);
+
+        if (speakReply || voiceLoop) speak(reply);
+      } catch (err) {
+        addBubble('ERROR', err.message);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Send';
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "SARVAGYA AI",
+  "description": "The ultimate universal personal AI super-intelligence platform — Made in India and created by Aryan Sharma. Unifies Google Gemini, OpenAI GPT-6 Astra, Anthropic Claude Opus 5.5, DeepSeek V4 Pro, live planetary satellite maps, global flight tracking, IRCTC live railway telemetry, and real-time quantitative market intelligence.",
+  "requestFramePermissions": [
+    "microphone",
+    "camera",
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "initiator": "SARVAGYA_ORCHESTRATOR",
+    "action": "ORCHESTRATE_QUICK",
+    "modelUsed": "gemini-3.1-flash-lite",
+    "toolsInvoked": [],
+    "approvalGranted": true,
+    "success": true,
+    "details": "Execution took 6559ms. Category: simple. Complexity: 1",
+    "id": "audit-1793613483403-k5f1",
+    "timestamp": "2026-11-02T09:58:03.403Z"
+  },
+  {
+    "initiator": "SARVAGYA_ORCHESTRATOR",
+    "action": "ORCHESTRATE_QUICK",
+    "modelUsed": "gemini-3.8-flash",
+    "toolsInvoked": [],
+    "approvalGranted": true,
+    "success": true,
+    "details": "Execution took 537ms. Category: simple. Complexity: 1",
+    "id": "audit-1793613204077-n490",
+    "timestamp": "2026-11-02T09:53:24.077Z"
+  },
+  {
+    "initiator": "SARVAGYA_ORCHESTRATOR",
+    "action": "ORCHESTRATE_AUTO",
+    "modelUsed": "gpt-6-astra",
+    "toolsInvoked": [
+      "travel_search",
+      "web_search"
+    ],
+    "approvalGranted": true,
+    "success": true,
+    "details": "Execution took 6348ms. Category: travel_planning. Complexity: 1",
+    "id": "audit-1793519161141-b8cn",
+    "timestamp": "2026-11-01T07:46:01.141Z"
+  }
+]
