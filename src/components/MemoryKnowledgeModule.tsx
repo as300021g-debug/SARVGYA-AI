@@ -43,6 +43,13 @@ export interface AITextEntry {
   verified: boolean;
 }
 
+export interface DateGroupedEntry {
+  dateKey: string;
+  dateLabel: string;
+  entryCount: number;
+  entries: AITextEntry[];
+}
+
 export interface GroupedAIEntries {
   liveAndCurrentToday: AITextEntry[];
   past24To48Hours: AITextEntry[];
@@ -79,9 +86,12 @@ export const MemoryKnowledgeModule: React.FC = () => {
   const [dateFilter, setDateFilter] = useState<"all" | "live" | "24h">("all");
   const [sourceTypeFilter, setSourceTypeFilter] = useState<string>("all");
   const [categoryFilter, setCategoryFilter] = useState<string>("all");
-  const [sortOrder, setSortOrder] = useState<"desc" | "asc">("desc");
+  // Default to 'asc' (Earliest First) to honor user request: "starting with the earliest entry"
+  const [sortOrder, setSortOrder] = useState<"desc" | "asc">("asc");
+  const [groupingMode, setGroupingMode] = useState<"chronological_dates" | "status_buckets">("chronological_dates");
 
   // Data States
+  const [dateGroups, setDateGroups] = useState<DateGroupedEntry[]>([]);
   const [groupedData, setGroupedData] = useState<GroupedAIEntries>({
     liveAndCurrentToday: [],
     past24To48Hours: [],
@@ -94,6 +104,12 @@ export const MemoryKnowledgeModule: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [copiedSummary, setCopiedSummary] = useState(false);
+
+  // Tag Management States
+  const [activeTagInputId, setActiveTagInputId] = useState<string | null>(null);
+  const [customTagInput, setCustomTagInput] = useState<string>("");
+  const [tagSuggestions, setTagSuggestions] = useState<Record<string, string[]>>({});
+  const [loadingSuggestionsFor, setLoadingSuggestionsFor] = useState<string | null>(null);
 
   // Manual Memory Creation
   const [showAddForm, setShowAddForm] = useState(false);
@@ -128,6 +144,22 @@ export const MemoryKnowledgeModule: React.FC = () => {
           currentSystemTime: data.currentSystemTime || new Date().toISOString(),
         });
       }
+
+      // Fetch date-grouped chronological stream
+      const dateParams = new URLSearchParams({
+        query: searchQuery,
+        exactPhrase: String(exactPhraseMode),
+        sourceFilter: sourceTypeFilter,
+        categoryFilter,
+        sortBy: sortOrder,
+        groupByDate: "true",
+      });
+
+      const dateRes = await fetch(`/api/ai-entries?${dateParams.toString()}`);
+      const dateData = await dateRes.json();
+      if (dateData.success && Array.isArray(dateData.dateGroups)) {
+        setDateGroups(dateData.dateGroups);
+      }
     } catch (err) {
       console.warn("Error fetching AI entries:", err);
     } finally {
@@ -153,6 +185,94 @@ export const MemoryKnowledgeModule: React.FC = () => {
     fetchEntries();
     fetchSummary();
   }, [searchQuery, exactPhraseMode, dateFilter, sourceTypeFilter, categoryFilter, sortOrder]);
+
+  // Update local entry tags smoothly across all views
+  const updateLocalEntryTags = (id: string, newTags: string[]) => {
+    setDateGroups((prev) =>
+      prev.map((group) => ({
+        ...group,
+        entries: group.entries.map((e) => (e.id === id ? { ...e, tags: newTags } : e)),
+      }))
+    );
+    setGroupedData((prev) => ({
+      ...prev,
+      liveAndCurrentToday: prev.liveAndCurrentToday.map((e) => (e.id === id ? { ...e, tags: newTags } : e)),
+      past24To48Hours: prev.past24To48Hours.map((e) => (e.id === id ? { ...e, tags: newTags } : e)),
+      historicalEntries: prev.historicalEntries.map((e) => (e.id === id ? { ...e, tags: newTags } : e)),
+    }));
+  };
+
+  // Add Tag to Entry Handler
+  const handleAddTag = async (entry: AITextEntry, tagToAdd: string) => {
+    const clean = tagToAdd.trim().toLowerCase().replace(/^#+/, "").replace(/\s+/g, "-");
+    if (!clean) return;
+    const currentTags = entry.tags || [];
+    if (currentTags.map((t) => t.toLowerCase()).includes(clean)) return;
+
+    const newTags = [...currentTags, clean];
+    try {
+      const res = await fetch(`/api/ai-entries/${encodeURIComponent(entry.id)}/tags`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ tags: newTags }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        updateLocalEntryTags(entry.id, newTags);
+        setTagSuggestions((prev) => ({
+          ...prev,
+          [entry.id]: (prev[entry.id] || []).filter((t) => t.toLowerCase() !== clean),
+        }));
+      }
+    } catch (err) {
+      console.warn("Failed to add tag:", err);
+    }
+  };
+
+  // Remove Tag from Entry Handler
+  const handleRemoveTag = async (entry: AITextEntry, tagToRemove: string) => {
+    const newTags = (entry.tags || []).filter((t) => t.toLowerCase() !== tagToRemove.toLowerCase());
+    try {
+      const res = await fetch(`/api/ai-entries/${encodeURIComponent(entry.id)}/tags`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ tags: newTags }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        updateLocalEntryTags(entry.id, newTags);
+      }
+    } catch (err) {
+      console.warn("Failed to remove tag:", err);
+    }
+  };
+
+  // Suggest Tags for Entry Handler
+  const handleSuggestTags = async (entry: AITextEntry) => {
+    setLoadingSuggestionsFor(entry.id);
+    try {
+      const res = await fetch("/api/ai-entries/suggest-tags", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          content: entry.content,
+          title: entry.title,
+          existingTags: entry.tags || [],
+        }),
+      });
+      const data = await res.json();
+      if (data.success && Array.isArray(data.suggestedTags)) {
+        setTagSuggestions((prev) => ({
+          ...prev,
+          [entry.id]: data.suggestedTags,
+        }));
+      }
+    } catch (err) {
+      console.warn("Failed to suggest tags:", err);
+    } finally {
+      setLoadingSuggestionsFor(null);
+    }
+  };
 
   const handleAddMemory = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -248,10 +368,16 @@ export const MemoryKnowledgeModule: React.FC = () => {
     }
   };
 
-  const formatDateLabel = (isoString: string) => {
+  // Format full date label helper
+  const formatDateFull = (isoString: string) => {
     try {
       const d = new Date(isoString);
-      return d.toLocaleDateString([], { month: "short", day: "numeric", year: "numeric" });
+      return d.toLocaleDateString(undefined, {
+        weekday: "short",
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      });
     } catch {
       return isoString;
     }
@@ -259,28 +385,41 @@ export const MemoryKnowledgeModule: React.FC = () => {
 
   const renderEntryCard = (entry: AITextEntry) => {
     const isLiveToday = entry.timestamp.startsWith("2026-11-02");
+    const suggestions = tagSuggestions[entry.id] || [];
+    const isSuggesting = loadingSuggestionsFor === entry.id;
+    const isAddingTag = activeTagInputId === entry.id;
 
     return (
       <div
         key={entry.id}
         className={`p-4 rounded-xl border transition-all duration-200 space-y-3 flex flex-col justify-between ${
           isLiveToday
-            ? "bg-slate-900/90 border-cyan-500/30 hover:border-cyan-400/60 shadow-lg shadow-cyan-950/20"
-            : "bg-slate-900/70 border-slate-800 hover:border-slate-700"
+            ? "bg-slate-900/95 border-cyan-500/30 hover:border-cyan-400/60 shadow-lg shadow-cyan-950/20"
+            : "bg-slate-900/80 border-slate-800 hover:border-slate-700"
         }`}
       >
-        <div className="space-y-2">
-          {/* Top Badges */}
+        <div className="space-y-3">
+          {/* Top Explicit Date & Time Header */}
+          <div className="p-2.5 rounded-lg bg-slate-950/80 border border-slate-800/80 flex flex-wrap items-center justify-between gap-2 text-xs">
+            <div className="flex items-center gap-1.5 font-medium text-slate-200">
+              <Calendar className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+              <span className="text-slate-400 text-[11px]">Date:</span>
+              <span className="font-semibold text-slate-100">{formatDateFull(entry.timestamp)}</span>
+            </div>
+            <div className="flex items-center gap-1.5 font-mono text-[11px] text-cyan-300 bg-cyan-950/40 px-2 py-0.5 rounded border border-cyan-500/20">
+              <Clock className="w-3 h-3 text-cyan-400 shrink-0" />
+              <span className="text-slate-400 text-[10px]">Time:</span>
+              <span className="font-bold">{formatTime(entry.timestamp)}</span>
+            </div>
+          </div>
+
+          {/* Source & Category Badges */}
           <div className="flex flex-wrap items-center justify-between gap-1.5 text-[10px]">
             <div className="flex items-center gap-1.5 flex-wrap">
-              {isLiveToday ? (
+              {isLiveToday && (
                 <span className="flex items-center gap-1 px-2 py-0.5 rounded font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30 animate-pulse">
                   <span className="w-1.5 h-1.5 rounded-full bg-rose-400" />
-                  LIVE • TODAY
-                </span>
-              ) : (
-                <span className="px-2 py-0.5 rounded font-medium bg-slate-800 text-slate-400 border border-slate-700">
-                  {formatDateLabel(entry.timestamp)}
+                  LIVE
                 </span>
               )}
 
@@ -304,33 +443,142 @@ export const MemoryKnowledgeModule: React.FC = () => {
                 </span>
               )}
             </div>
-
-            <div className="flex items-center gap-1 text-slate-400 font-mono text-[11px]">
-              <Clock className="w-3 h-3 text-slate-500" />
-              <span>{formatTime(entry.timestamp)}</span>
-            </div>
           </div>
 
-          {/* Title */}
+          {/* Title with search highlighting */}
           <h3 className="text-sm font-bold text-slate-100 leading-snug">
             {highlightMatches(entry.title, searchQuery, exactPhraseMode)}
           </h3>
 
-          {/* Content */}
+          {/* Content with search highlighting */}
           <p className="text-xs text-slate-300 leading-relaxed max-h-48 overflow-y-auto whitespace-pre-wrap">
             {highlightMatches(entry.content, searchQuery, exactPhraseMode)}
           </p>
 
-          {/* Tags */}
-          {entry.tags && entry.tags.length > 0 && (
-            <div className="flex flex-wrap gap-1 pt-1">
-              {entry.tags.slice(0, 4).map((t, idx) => (
-                <span key={idx} className="px-1.5 py-0.5 rounded text-[9px] bg-slate-800/60 text-slate-400 border border-slate-700/40">
-                  #{t}
+          {/* TAG CATEGORIZATION & SUGGESTIONS */}
+          <div className="pt-2 border-t border-slate-800/60 space-y-2">
+            <div className="flex items-center justify-between gap-1 text-[11px]">
+              <span className="text-slate-400 font-medium flex items-center gap-1">
+                <Tag className="w-3 h-3 text-cyan-400" /> Tags ({entry.tags?.length || 0}):
+              </span>
+
+              {/* Suggest Relevant Tags */}
+              <button
+                type="button"
+                onClick={() => handleSuggestTags(entry)}
+                disabled={isSuggesting}
+                className="text-[10px] font-medium text-amber-300 hover:text-amber-200 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 px-2 py-0.5 rounded flex items-center gap-1 transition"
+                title="Suggest relevant tags based on entry content"
+              >
+                <Sparkles className={`w-3 h-3 ${isSuggesting ? "animate-spin text-amber-400" : ""}`} />
+                <span>{isSuggesting ? "Analyzing..." : "Suggest Tags"}</span>
+              </button>
+            </div>
+
+            {/* Active Tags with Removal */}
+            <div className="flex flex-wrap items-center gap-1.5">
+              {entry.tags && entry.tags.map((t, idx) => (
+                <span
+                  key={idx}
+                  className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] bg-slate-800 text-slate-200 border border-slate-700 hover:border-slate-600 transition"
+                >
+                  <span>#{t}</span>
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveTag(entry, t)}
+                    className="text-slate-400 hover:text-rose-400 ml-0.5 transition font-bold"
+                    title={`Remove tag #${t}`}
+                  >
+                    ✕
+                  </button>
                 </span>
               ))}
+
+              {/* Add Tag Inline Form */}
+              {isAddingTag ? (
+                <div className="inline-flex items-center gap-1">
+                  <input
+                    type="text"
+                    autoFocus
+                    value={customTagInput}
+                    onChange={(e) => setCustomTagInput(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        e.preventDefault();
+                        if (customTagInput.trim()) {
+                          handleAddTag(entry, customTagInput.trim());
+                          setCustomTagInput("");
+                          setActiveTagInputId(null);
+                        }
+                      } else if (e.key === "Escape") {
+                        setActiveTagInputId(null);
+                        setCustomTagInput("");
+                      }
+                    }}
+                    placeholder="tag + Enter"
+                    className="w-24 px-1.5 py-0.5 text-[10px] bg-slate-950 border border-cyan-500 rounded text-slate-100 focus:outline-none"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (customTagInput.trim()) {
+                        handleAddTag(entry, customTagInput.trim());
+                        setCustomTagInput("");
+                      }
+                      setActiveTagInputId(null);
+                    }}
+                    className="text-[10px] text-cyan-400 hover:text-cyan-300 font-semibold px-1"
+                  >
+                    Add
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setActiveTagInputId(null);
+                      setCustomTagInput("");
+                    }}
+                    className="text-[10px] text-slate-500 hover:text-slate-300"
+                  >
+                    ✕
+                  </button>
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveTagInputId(entry.id);
+                    setCustomTagInput("");
+                  }}
+                  className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-[10px] bg-cyan-950/40 text-cyan-400 border border-cyan-500/30 hover:bg-cyan-900/40 transition"
+                >
+                  <Plus className="w-2.5 h-2.5" />
+                  <span>Tag</span>
+                </button>
+              )}
             </div>
-          )}
+
+            {/* AI Suggested Tags Options */}
+            {suggestions.length > 0 && (
+              <div className="p-2 rounded-lg bg-amber-950/20 border border-amber-500/20 space-y-1">
+                <span className="text-[10px] text-amber-300 font-medium flex items-center gap-1">
+                  <Sparkles className="w-2.5 h-2.5 text-amber-400" /> Click to add suggested tag:
+                </span>
+                <div className="flex flex-wrap gap-1">
+                  {suggestions.map((st, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={() => handleAddTag(entry, st)}
+                      className="px-1.5 py-0.5 rounded text-[9px] bg-amber-500/10 hover:bg-amber-500/20 text-amber-200 border border-amber-500/30 font-mono transition flex items-center gap-0.5"
+                    >
+                      <span>+</span>
+                      <span>#{st}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Footer Meta */}
@@ -357,6 +605,10 @@ export const MemoryKnowledgeModule: React.FC = () => {
     );
   };
 
+  const totalFilteredEntries = useMemo(() => {
+    return dateGroups.reduce((acc, g) => acc + g.entries.length, 0);
+  }, [dateGroups]);
+
   return (
     <div className="p-4 sm:p-6 max-w-7xl mx-auto space-y-6">
       {/* Header & Status Banner */}
@@ -369,12 +621,12 @@ export const MemoryKnowledgeModule: React.FC = () => {
             <h1 className="text-xl font-bold text-slate-100">AI-Generated Text Entries & Intelligence Repository</h1>
             <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-cyan-500/10 text-cyan-300 border border-cyan-500/30">
               <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-              Live Chronological Stream • Nov 2, 2026
+              Chronological Stream • Organized by Date & Time
             </span>
           </div>
           <p className="text-xs text-slate-400 mt-1 max-w-3xl">
             Unified index of all AI-generated text entries, autonomous agent reports, and real-time world intelligence.
-            Chronologically organized by date and time, grouped around live/current information with exact phrase and keyword search.
+            Chronologically grouped starting from the earliest entry, with real-time keyword search, explicit date/time labels, and smart tag categorization.
           </p>
         </div>
 
@@ -450,7 +702,7 @@ export const MemoryKnowledgeModule: React.FC = () => {
 
         <div className="hidden sm:flex items-center gap-2 text-[11px] text-slate-400 font-mono">
           <Calendar className="w-3.5 h-3.5 text-cyan-400" />
-          <span>Current Anchor: Nov 2, 2026</span>
+          <span>Timeline: Oct 29 – Nov 2, 2026</span>
         </div>
       </div>
 
@@ -523,6 +775,7 @@ export const MemoryKnowledgeModule: React.FC = () => {
       {/* SEARCH AND FILTER BAR (Active on Stream view) */}
       {activeView === "stream" && (
         <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+          {/* Main Search Row */}
           <div className="flex flex-col md:flex-row gap-3">
             {/* Search Input */}
             <div className="relative flex-1">
@@ -530,11 +783,7 @@ export const MemoryKnowledgeModule: React.FC = () => {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder={
-                  exactPhraseMode
-                    ? 'Exact phrase search (e.g. "Sean Duffy" or "Sensex Jumps 650")...'
-                    : "Search keywords or exact phrases (use quotes for exact match)..."
-                }
+                placeholder="Search keywords across text entries (e.g. ISRO, Sensex, Gemini, Aviation)..."
                 className="w-full pl-9 pr-24 py-2 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 placeholder-slate-500 text-xs focus:outline-none focus:border-cyan-500 transition"
               />
               <Search className="w-4 h-4 text-slate-500 absolute left-3 top-2.5" />
@@ -549,45 +798,42 @@ export const MemoryKnowledgeModule: React.FC = () => {
                 }`}
                 title="Toggle exact phrase matching"
               >
-                {exactPhraseMode ? '✓ Exact Phrase' : '"Exact"'}
+                {exactPhraseMode ? "✓ Exact Phrase" : '"Exact"'}
               </button>
             </div>
 
-            {/* Date Scope Filter */}
+            {/* View Grouping Mode Switcher */}
             <div className="flex items-center gap-1 bg-slate-950 border border-slate-800 p-1 rounded-xl text-xs">
               <button
-                onClick={() => setDateFilter("all")}
-                className={`px-2.5 py-1 rounded-lg transition text-[11px] font-medium ${
-                  dateFilter === "all" ? "bg-cyan-600 text-white font-semibold" : "text-slate-400 hover:text-slate-200"
-                }`}
-              >
-                All Dates
-              </button>
-              <button
-                onClick={() => setDateFilter("live")}
+                onClick={() => setGroupingMode("chronological_dates")}
                 className={`px-2.5 py-1 rounded-lg transition text-[11px] font-medium flex items-center gap-1 ${
-                  dateFilter === "live" ? "bg-rose-600 text-white font-semibold" : "text-slate-400 hover:text-slate-200"
+                  groupingMode === "chronological_dates"
+                    ? "bg-cyan-600 text-white font-semibold"
+                    : "text-slate-400 hover:text-slate-200"
                 }`}
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-rose-400" />
-                Live Today (Nov 2)
+                <Calendar className="w-3 h-3" />
+                <span>By Calendar Date</span>
               </button>
               <button
-                onClick={() => setDateFilter("24h")}
-                className={`px-2.5 py-1 rounded-lg transition text-[11px] font-medium ${
-                  dateFilter === "24h" ? "bg-cyan-600 text-white font-semibold" : "text-slate-400 hover:text-slate-200"
+                onClick={() => setGroupingMode("status_buckets")}
+                className={`px-2.5 py-1 rounded-lg transition text-[11px] font-medium flex items-center gap-1 ${
+                  groupingMode === "status_buckets"
+                    ? "bg-cyan-600 text-white font-semibold"
+                    : "text-slate-400 hover:text-slate-200"
                 }`}
               >
-                Past 24h
+                <Layers className="w-3 h-3" />
+                <span>By Priority / Live</span>
               </button>
             </div>
           </div>
 
-          {/* Secondary Filter Row */}
+          {/* Secondary Controls: Filters & Sort Order */}
           <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-800/60 text-xs">
             <div className="flex flex-wrap items-center gap-2">
               <span className="text-slate-500 text-[11px] flex items-center gap-1">
-                <Filter className="w-3 h-3" /> Filter by:
+                <Filter className="w-3 h-3" /> Filters:
               </span>
 
               {/* Source Type */}
@@ -619,97 +865,190 @@ export const MemoryKnowledgeModule: React.FC = () => {
               </select>
             </div>
 
-            {/* Sort Order Toggle */}
-            <button
-              onClick={() => setSortOrder(sortOrder === "desc" ? "asc" : "desc")}
-              className="flex items-center gap-1.5 px-2.5 py-1 bg-slate-950 border border-slate-800 rounded-lg text-slate-300 text-[11px] hover:text-white"
-            >
-              <ArrowUpDown className="w-3 h-3 text-cyan-400" />
-              <span>{sortOrder === "desc" ? "Newest First (Chronological)" : "Oldest First"}</span>
-            </button>
+            {/* Chronological Sort Toggle: Earliest vs Latest */}
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
+                className="flex items-center gap-1.5 px-3 py-1 bg-slate-950 border border-cyan-500/30 hover:border-cyan-500/60 rounded-lg text-cyan-300 text-[11px] font-semibold transition"
+                title="Toggle chronological sorting"
+              >
+                <ArrowUpDown className="w-3.5 h-3.5 text-cyan-400" />
+                <span>
+                  {sortOrder === "asc"
+                    ? "📅 Chronological: Earliest First (Ascending)"
+                    : "📅 Chronological: Latest First (Descending)"}
+                </span>
+              </button>
+            </div>
           </div>
+
+          {/* Search Query Feedback Banner */}
+          {searchQuery.trim() && (
+            <div className="p-2.5 rounded-xl bg-cyan-950/30 border border-cyan-500/30 flex items-center justify-between text-xs">
+              <div className="flex items-center gap-2 text-cyan-200">
+                <Search className="w-3.5 h-3.5 text-cyan-400" />
+                <span>
+                  Showing text entries containing:{" "}
+                  <strong className="text-white">"{searchQuery}"</strong> ({totalFilteredEntries} entries found)
+                </span>
+              </div>
+              <button
+                onClick={() => setSearchQuery("")}
+                className="text-[11px] text-cyan-400 hover:text-cyan-200 underline font-medium"
+              >
+                Clear Search
+              </button>
+            </div>
+          )}
         </div>
       )}
 
       {/* VIEW 1: CHRONOLOGICAL STREAM */}
       {activeView === "stream" && (
         <div className="space-y-8">
-          {/* GROUP 1: LIVE & CURRENT TODAY (Nov 2, 2026) */}
-          <div className="space-y-4">
-            <div className="flex items-center justify-between pb-2 border-b border-rose-500/20">
-              <div className="flex items-center gap-2">
-                <span className="flex h-3 w-3 relative">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-rose-500" />
-                </span>
-                <h2 className="text-base font-bold text-slate-100 flex items-center gap-2">
-                  <span>Live & Current: Today — November 2, 2026</span>
-                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-500/10 text-rose-300 border border-rose-500/30">
-                    {groupedData.liveAndCurrentToday.length} verified entries
-                  </span>
-                </h2>
-              </div>
-              <span className="text-[11px] text-slate-400 font-mono hidden sm:inline">
-                Chronological order maintained (latest first)
-              </span>
-            </div>
-
-            {groupedData.liveAndCurrentToday.length === 0 ? (
-              <div className="p-8 rounded-xl bg-slate-900/40 border border-slate-800 text-center text-slate-400 text-xs">
-                No entries matching your filter criteria in today's live feed.
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {groupedData.liveAndCurrentToday.map(renderEntryCard)}
-              </div>
-            )}
-          </div>
-
-          {/* GROUP 2: PAST 24 TO 48 HOURS */}
-          {dateFilter !== "live" && groupedData.past24To48Hours.length > 0 && (
-            <div className="space-y-4">
-              <div className="flex items-center justify-between pb-2 border-b border-amber-500/20">
-                <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-amber-400" />
-                  <h2 className="text-base font-bold text-slate-100 flex items-center gap-2">
-                    <span>Recent Sessions: Past 24–48 Hours</span>
-                    <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/10 text-amber-300 border border-amber-500/30">
-                      {groupedData.past24To48Hours.length} entries
-                    </span>
-                  </h2>
+          {/* MODE A: CHRONOLOGICAL GROUPING BY CALENDAR DATE (Starting with earliest entry) */}
+          {groupingMode === "chronological_dates" && (
+            <div className="space-y-8">
+              {dateGroups.length === 0 ? (
+                <div className="p-8 rounded-xl bg-slate-900/40 border border-slate-800 text-center text-slate-400 text-xs">
+                  No text entries found matching your search and filter criteria.
                 </div>
-                <span className="text-[11px] text-slate-400 font-mono hidden sm:inline">
-                  Nov 1, 2026 & Oct 31, 2026
-                </span>
-              </div>
+              ) : (
+                dateGroups.map((group, groupIdx) => {
+                  const isTodayGroup = group.dateKey === "2026-11-02";
+                  return (
+                    <div key={group.dateKey} className="space-y-4">
+                      {/* Date Group Header */}
+                      <div
+                        className={`flex flex-col sm:flex-row sm:items-center justify-between pb-2.5 border-b gap-2 ${
+                          isTodayGroup ? "border-cyan-500/40" : "border-slate-800"
+                        }`}
+                      >
+                        <div className="flex items-center gap-2.5 flex-wrap">
+                          <span
+                            className={`p-1.5 rounded-lg border flex items-center justify-center ${
+                              isTodayGroup
+                                ? "bg-rose-500/10 text-rose-400 border-rose-500/30"
+                                : "bg-slate-800 text-cyan-400 border-slate-700"
+                            }`}
+                          >
+                            <Calendar className="w-4 h-4" />
+                          </span>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {groupedData.past24To48Hours.map(renderEntryCard)}
-              </div>
+                          <h2 className="text-base font-bold text-slate-100 flex items-center gap-2">
+                            <span>{group.dateLabel}</span>
+                            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-800 text-slate-300 border border-slate-700">
+                              {group.entryCount} {group.entryCount === 1 ? "entry" : "entries"}
+                            </span>
+                            {isTodayGroup && (
+                              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40 animate-pulse">
+                                LIVE TODAY
+                              </span>
+                            )}
+                          </h2>
+                        </div>
+
+                        <div className="text-[11px] text-slate-400 font-mono flex items-center gap-2">
+                          <span>Group #{groupIdx + 1}</span>
+                          <span>•</span>
+                          <span>
+                            {sortOrder === "asc" ? "Sorted Earliest → Latest" : "Sorted Latest → Earliest"}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Entries Grid for this Date */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {group.entries.map(renderEntryCard)}
+                      </div>
+                    </div>
+                  );
+                })
+              )}
             </div>
           )}
 
-          {/* GROUP 3: HISTORICAL ARCHIVES */}
-          {dateFilter === "all" && groupedData.historicalEntries.length > 0 && (
-            <div className="space-y-4">
-              <div className="flex items-center justify-between pb-2 border-b border-slate-800">
-                <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-slate-500" />
-                  <h2 className="text-base font-bold text-slate-200 flex items-center gap-2">
-                    <span>Historical Archive Entries</span>
-                    <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-800 text-slate-400 border border-slate-700">
-                      {groupedData.historicalEntries.length} entries
+          {/* MODE B: STATUS BUCKETS (Live Today / Past 24-48h / Historical) */}
+          {groupingMode === "status_buckets" && (
+            <div className="space-y-8">
+              {/* GROUP 1: LIVE & CURRENT TODAY (Nov 2, 2026) */}
+              <div className="space-y-4">
+                <div className="flex items-center justify-between pb-2 border-b border-rose-500/20">
+                  <div className="flex items-center gap-2">
+                    <span className="flex h-3 w-3 relative">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75" />
+                      <span className="relative inline-flex rounded-full h-3 w-3 bg-rose-500" />
                     </span>
-                  </h2>
+                    <h2 className="text-base font-bold text-slate-100 flex items-center gap-2">
+                      <span>Live & Current: Today — November 2, 2026</span>
+                      <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-500/10 text-rose-300 border border-rose-500/30">
+                        {groupedData.liveAndCurrentToday.length} verified entries
+                      </span>
+                    </h2>
+                  </div>
+                  <span className="text-[11px] text-slate-400 font-mono hidden sm:inline">
+                    {sortOrder === "asc" ? "Ascending (Earliest first)" : "Descending (Latest first)"}
+                  </span>
                 </div>
-                <span className="text-[11px] text-slate-500 font-mono hidden sm:inline">
-                  Oct 29–30, 2026 & prior sessions
-                </span>
+
+                {groupedData.liveAndCurrentToday.length === 0 ? (
+                  <div className="p-8 rounded-xl bg-slate-900/40 border border-slate-800 text-center text-slate-400 text-xs">
+                    No entries matching your filter criteria in today's live feed.
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {groupedData.liveAndCurrentToday.map(renderEntryCard)}
+                  </div>
+                )}
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {groupedData.historicalEntries.map(renderEntryCard)}
-              </div>
+              {/* GROUP 2: PAST 24 TO 48 HOURS */}
+              {dateFilter !== "live" && groupedData.past24To48Hours.length > 0 && (
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between pb-2 border-b border-amber-500/20">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-amber-400" />
+                      <h2 className="text-base font-bold text-slate-100 flex items-center gap-2">
+                        <span>Recent Sessions: Past 24–48 Hours</span>
+                        <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/10 text-amber-300 border border-amber-500/30">
+                          {groupedData.past24To48Hours.length} entries
+                        </span>
+                      </h2>
+                    </div>
+                    <span className="text-[11px] text-slate-400 font-mono hidden sm:inline">
+                      Nov 1, 2026 & Oct 31, 2026
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {groupedData.past24To48Hours.map(renderEntryCard)}
+                  </div>
+                </div>
+              )}
+
+              {/* GROUP 3: HISTORICAL ARCHIVES */}
+              {dateFilter === "all" && groupedData.historicalEntries.length > 0 && (
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between pb-2 border-b border-slate-800">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-slate-500" />
+                      <h2 className="text-base font-bold text-slate-200 flex items-center gap-2">
+                        <span>Historical Archive Entries</span>
+                        <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-800 text-slate-400 border border-slate-700">
+                          {groupedData.historicalEntries.length} entries
+                        </span>
+                      </h2>
+                    </div>
+                    <span className="text-[11px] text-slate-500 font-mono hidden sm:inline">
+                      Oct 29–30, 2026 & prior sessions
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {groupedData.historicalEntries.map(renderEntryCard)}
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>

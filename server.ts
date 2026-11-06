@@ -276,6 +276,24 @@ app.get("/api/ai-entries", (req: Request, res: Response) => {
     const sortBy = (req.query.sortBy as any) || "desc";
     const grouped = req.query.grouped !== "false";
 
+    if (req.query.groupByDate === "true") {
+      const dateGroups = aiEntriesManager.getChronologicalDateGroups({
+        query,
+        exactPhrase,
+        sourceFilter,
+        categoryFilter,
+        sortBy: sortBy === "asc" ? "asc" : "desc",
+      });
+      const totalCount = dateGroups.reduce((acc, g) => acc + g.entryCount, 0);
+      return res.json({
+        success: true,
+        groupedByDate: true,
+        sortBy,
+        totalCount,
+        dateGroups,
+      });
+    }
+
     if (grouped) {
       const groupedData = aiEntriesManager.getGroupedEntries({
         query,
@@ -330,6 +348,37 @@ app.post("/api/ai-entries", (req: Request, res: Response) => {
     });
 
     return res.json({ success: true, entry: recorded });
+  } catch (err: any) {
+    return res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// 2b. Update / Add / Remove Tags for an AI text entry
+app.put("/api/ai-entries/:id/tags", (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const { tags } = req.body;
+    if (!Array.isArray(tags)) {
+      return res.status(400).json({ success: false, error: "Tags array is required." });
+    }
+
+    const updated = aiEntriesManager.updateEntryTags(id, tags);
+    if (!updated) {
+      return res.status(404).json({ success: false, error: "Entry not found." });
+    }
+
+    return res.json({ success: true, entry: updated });
+  } catch (err: any) {
+    return res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// 2c. AI Tag Suggester based on entry text content
+app.post("/api/ai-entries/suggest-tags", (req: Request, res: Response) => {
+  try {
+    const { content = "", title = "", existingTags = [] } = req.body;
+    const suggestions = aiEntriesManager.suggestTags(content, title, existingTags);
+    return res.json({ success: true, suggestedTags: suggestions });
   } catch (err: any) {
     return res.status(500).json({ success: false, error: err.message });
   }

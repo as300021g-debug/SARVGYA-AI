@@ -525,6 +525,159 @@ export class AIEntriesManager {
       ],
     };
   }
+
+  /**
+   * Update or overwrite tags for a given entry by ID
+   */
+  public updateEntryTags(id: string, tags: string[]): AITextEntry | null {
+    const cleanTags = Array.from(
+      new Set(
+        tags
+          .map((t) => t.trim().toLowerCase().replace(/^#+/, "").replace(/\s+/g, "-"))
+          .filter((t) => t.length > 0 && t.length <= 40)
+      )
+    );
+
+    let entry = this.runtimeEntries.get(id);
+    if (!entry) {
+      const all = this.getAllEntries();
+      const found = all.find((e) => e.id === id);
+      if (found) {
+        entry = { ...found, tags: cleanTags };
+        this.runtimeEntries.set(id, entry);
+      }
+    } else {
+      entry.tags = cleanTags;
+      this.runtimeEntries.set(id, entry);
+    }
+
+    if (entry) {
+      this.saveRuntimeEntries();
+      return entry;
+    }
+    return null;
+  }
+
+  /**
+   * Intelligent tag suggester: analyzes entry text content and title
+   * to automatically suggest relevant domain, entity, and topic tags.
+   */
+  public suggestTags(content: string, title: string = "", existingTags: string[] = []): string[] {
+    const combinedText = `${title} ${content}`.toLowerCase();
+    const suggestions = new Set<string>();
+    const existingSet = new Set(existingTags.map((t) => t.toLowerCase().replace(/^#+/, "")));
+
+    // Domain heuristic dictionaries
+    const domainRules: Array<{ pattern: RegExp; tags: string[] }> = [
+      { pattern: /sensex|nifty|stock|equity|crude|crore|investor|shares|market|bse|nse/i, tags: ["market", "finance", "equities"] },
+      { pattern: /aviation|aircraft|flight|crash|mar-a-lago|sean duffy|airfare|ryanair|faa/i, tags: ["aviation", "safety", "transportation"] },
+      { pattern: /gemini|argon|astra|gpt|model|llm|deepmind|openai|claude|neural|ai/i, tags: ["frontier-ai", "gemini", "autonomous-systems"] },
+      { pattern: /isro|satellite|orbit|space|telemetry|launch|radar|transit|ntes/i, tags: ["isro", "space-telemetry", "satellite"] },
+      { pattern: /clinical|dermatology|healthcare|health|doctor|medicine|care/i, tags: ["healthcare", "clinical-policy", "medicine"] },
+      { pattern: /court|supreme|judicial|litigation|policy|governance|compliance|law/i, tags: ["governance", "legal-policy", "public-affairs"] },
+      { pattern: /cloudsql|postgresql|database|firestore|storage|auth|schema/i, tags: ["cloud-sql", "database", "infrastructure"] },
+      { pattern: /stopwatch|clock|calendar|schedule|alarm|timer/i, tags: ["chrono-watch", "scheduling", "productivity"] },
+      { pattern: /smart\s*home|alexa|thermostat|lighting|routine/i, tags: ["smart-home", "iot", "alexa-routines"] },
+    ];
+
+    for (const rule of domainRules) {
+      if (rule.pattern.test(combinedText)) {
+        for (const t of rule.tags) {
+          if (!existingSet.has(t)) suggestions.add(t);
+        }
+      }
+    }
+
+    // Extract significant capitalized named entities or phrases from original title & content
+    const rawCombined = `${title}. ${content}`;
+    const entityMatches = rawCombined.match(/\b[A-Z][a-zA-Z0-9'-]+(?:\s+[A-Z][a-zA-Z0-9'-]+)*\b/g) || [];
+    const stopWords = new Set(["The", "This", "That", "These", "Those", "And", "With", "From", "For", "Into", "Under", "After", "Before", "SARVAGYA", "AI"]);
+
+    for (const entity of entityMatches) {
+      const clean = entity.trim();
+      if (clean.length > 3 && !stopWords.has(clean)) {
+        const slug = clean.toLowerCase().replace(/\s+/g, "-");
+        if (!existingSet.has(slug) && slug.length <= 25) {
+          suggestions.add(slug);
+        }
+      }
+    }
+
+    return Array.from(suggestions).slice(0, 8);
+  }
+
+  /**
+   * Group entries chronologically by calendar date with clear date and time labeling.
+   * Can be ordered starting with the earliest entry (ascending) or latest entry (descending).
+   */
+  public getChronologicalDateGroups(options: {
+    query?: string;
+    exactPhrase?: boolean;
+    sourceFilter?: string;
+    categoryFilter?: string;
+    sortBy?: "asc" | "desc";
+  }): Array<{
+    dateKey: string;
+    dateLabel: string;
+    entryCount: number;
+    entries: AITextEntry[];
+  }> {
+    const { sortBy = "asc" } = options;
+    const entries = this.searchEntries({
+      ...options,
+      dateFilter: "all",
+      sortBy,
+    });
+
+    // Group by Date string (YYYY-MM-DD)
+    const map = new Map<string, AITextEntry[]>();
+    for (const entry of entries) {
+      const key = entry.timestamp ? entry.timestamp.slice(0, 10) : "undated";
+      if (!map.has(key)) {
+        map.set(key, []);
+      }
+      map.get(key)!.push(entry);
+    }
+
+    // Sort date keys
+    const sortedKeys = Array.from(map.keys()).sort((a, b) => {
+      if (a === "undated") return 1;
+      if (b === "undated") return -1;
+      return sortBy === "asc"
+        ? new Date(a).getTime() - new Date(b).getTime()
+        : new Date(b).getTime() - new Date(a).getTime();
+    });
+
+    return sortedKeys.map((dateKey) => {
+      const dateEntries = map.get(dateKey) || [];
+      // Ensure time ordering within each date matches sortBy
+      dateEntries.sort((a, b) => {
+        const tA = new Date(a.timestamp).getTime();
+        const tB = new Date(b.timestamp).getTime();
+        return sortBy === "asc" ? tA - tB : tB - tA;
+      });
+
+      let dateLabel = dateKey;
+      try {
+        const d = new Date(dateKey + "T12:00:00Z");
+        dateLabel = d.toLocaleDateString("en-US", {
+          weekday: "long",
+          month: "long",
+          day: "numeric",
+          year: "numeric",
+        });
+      } catch {
+        dateLabel = dateKey;
+      }
+
+      return {
+        dateKey,
+        dateLabel,
+        entryCount: dateEntries.length,
+        entries: dateEntries,
+      };
+    });
+  }
 }
 
 export const aiEntriesManager = AIEntriesManager.getInstance();
