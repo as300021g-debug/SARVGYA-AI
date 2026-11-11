@@ -25,7 +25,6 @@ import { FullStackStudio } from "./components/workspaces/FullStackStudio";
 import { SpeechTranslateStudio } from "./components/workspaces/SpeechTranslateStudio";
 import { ModelConfigDrawer } from "./components/ModelConfigDrawer";
 import { OmniCoreHardwareHub } from "./components/OmniCoreHardwareHub";
-import { FreePublishModal } from "./components/FreePublishModal";
 import { ActiveTab, UserProfile, ModelParameters } from "./types";
 import { brainwaveSynthesizer } from "./utils/brainwaveSynthesizer";
 
@@ -33,7 +32,6 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<ActiveTab>("chat");
   const [isCommandCenterOpen, setIsCommandCenterOpen] = useState(false);
   const [isModelDrawerOpen, setIsModelDrawerOpen] = useState(false);
-  const [isPublishModalOpen, setIsPublishModalOpen] = useState(false);
 
   const [modelParams, setModelParams] = useState<ModelParameters>(() => {
     const saved = localStorage.getItem("sarvagya_model_params");
@@ -255,42 +253,7 @@ export default function App() {
         toggleSoundscape={toggleSoundscape}
         onOpenCommandCenter={() => setIsCommandCenterOpen(true)}
         onOpenModelDrawer={() => setIsModelDrawerOpen(true)}
-        onOpenPublishModal={() => setIsPublishModalOpen(true)}
         selectedModel={modelParams.model}
-      />
-
-      {/* 100% Free Live Published Notice Banner */}
-      <div className="bg-gradient-to-r from-emerald-950/80 via-slate-900 to-emerald-950/80 border-b border-emerald-500/30 px-4 py-1.5 text-xs flex flex-wrap items-center justify-between gap-2 text-emerald-200">
-        <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="font-bold text-white">App is ALREADY Live &amp; Published for 100% Free:</span>
-          <span className="hidden sm:inline font-mono text-sky-300 text-[11px] underline">
-            https://ais-pre-hhrhiyv2nqsguvdfyejhei-758083307178.asia-southeast1.run.app
-          </span>
-        </div>
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => {
-              navigator.clipboard.writeText("https://ais-pre-hhrhiyv2nqsguvdfyejhei-758083307178.asia-southeast1.run.app");
-              setIsPublishModalOpen(true);
-            }}
-            className="px-2.5 py-0.5 rounded bg-sky-600/40 hover:bg-sky-500/50 text-sky-200 border border-sky-400/40 font-semibold text-[11px] transition"
-          >
-            📋 Copy Public Link
-          </button>
-          <button
-            onClick={() => setIsPublishModalOpen(true)}
-            className="px-2.5 py-0.5 rounded bg-emerald-600/40 hover:bg-emerald-500/50 text-emerald-200 border border-emerald-400/40 font-semibold text-[11px] transition"
-          >
-            🚀 Free Publishing Guide
-          </button>
-        </div>
-      </div>
-
-      {/* 100% Free Publish Modal */}
-      <FreePublishModal
-        isOpen={isPublishModalOpen}
-        onClose={() => setIsPublishModalOpen(false)}
       />
 
       {/* Global Model & Parameter Configuration Drawer */}
@@ -324,6 +287,7 @@ export default function App() {
 
         {/* 7 Core Workspaces */}
         {activeTab === "chat" && <ChatModule onNavigateTab={setActiveTab} />}
+        {activeTab === "astra" && <ChatModule onNavigateTab={setActiveTab} initialAstraMode={true} />}
         {activeTab === "vision-lab" && <VisionAudioDocLab />}
         {activeTab === "live-agent" && <LiveVoiceAgent />}
         {activeTab === "creative" && <CreativeModule />}

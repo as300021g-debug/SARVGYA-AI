@@ -8,30 +8,51 @@
     <meta name="description" content="The ultimate universal personal AI super-intelligence platform — Made in India and created by Aryan Sharma. Unifies Google Gemini, OpenAI GPT-6 Astra, Anthropic Claude Opus 5.5, DeepSeek V4 Pro, live planetary satellite maps, global flight tracking, IRCTC live railway telemetry, and real-time quantitative market intelligence." />
     <meta property="og:description" content="The ultimate universal personal AI super-intelligence platform — Made in India and created by Aryan Sharma. Unifies Google Gemini, OpenAI GPT-6 Astra, Anthropic Claude Opus 5.5, DeepSeek V4 Pro, live planetary satellite maps, global flight tracking, IRCTC live railway telemetry, and real-time quantitative market intelligence." />
     <script>
-      // Suppress Vite HMR WebSocket connection notices in cloud iframe environment
+      // Cleanly filter Vite HMR WebSocket notices in cloud iframe reverse-proxy environment
       (function() {
-        var origConsoleError = console.error;
+        var isWsNoise = function(val) {
+          if (!val) return false;
+          var str = typeof val === 'string' ? val : (val.message || String(val));
+          return (
+            str.indexOf('WebSocket') !== -1 ||
+            str.indexOf('websocket') !== -1 ||
+            str.indexOf('closed without opened') !== -1 ||
+            str.indexOf('[vite] failed to connect') !== -1 ||
+            str.indexOf('[vite] connecting...') !== -1
+          );
+        };
+
+        var filterArgs = function(args) {
+          return Array.prototype.slice.call(args).some(isWsNoise);
+        };
+
+        var origError = console.error;
         console.error = function() {
-          var msg = Array.prototype.slice.call(arguments).map(function(a) {
-            return (a && a.message) || String(a);
-          }).join(' ');
-          if (msg.indexOf('WebSocket') !== -1 || msg.indexOf('websocket') !== -1 || msg.indexOf('closed without opened') !== -1) {
-            return;
-          }
-          origConsoleError.apply(console, arguments);
+          if (filterArgs(arguments)) return;
+          origError.apply(console, arguments);
+        };
+
+        var origWarn = console.warn;
+        console.warn = function() {
+          if (filterArgs(arguments)) return;
+          origWarn.apply(console, arguments);
+        };
+
+        var origInfo = console.info;
+        console.info = function() {
+          if (filterArgs(arguments)) return;
+          origInfo.apply(console, arguments);
         };
 
         window.addEventListener('unhandledrejection', function(event) {
-          var reason = event.reason && (event.reason.message || String(event.reason));
-          if (reason && (reason.indexOf('WebSocket') !== -1 || reason.indexOf('websocket') !== -1 || reason.indexOf('closed without opened') !== -1)) {
+          if (isWsNoise(event.reason)) {
             event.preventDefault();
             event.stopImmediatePropagation();
           }
         });
 
         window.addEventListener('error', function(event) {
-          var msg = event.message || '';
-          if (msg.indexOf('WebSocket') !== -1 || msg.indexOf('websocket') !== -1 || msg.indexOf('closed without opened') !== -1) {
+          if (isWsNoise(event.message) || isWsNoise(event.error)) {
             event.preventDefault();
             event.stopImmediatePropagation();
           }

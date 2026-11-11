@@ -40,7 +40,6 @@ interface NavbarProps {
   toggleSoundscape: () => void;
   onOpenCommandCenter?: () => void;
   onOpenModelDrawer?: () => void;
-  onOpenPublishModal?: () => void;
   selectedModel?: string;
 }
 
@@ -53,7 +52,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   toggleSoundscape,
   onOpenCommandCenter,
   onOpenModelDrawer,
-  onOpenPublishModal,
   selectedModel = "gemini-3.8-flash",
 }) => {
   const [quotaCountdown, setQuotaCountdown] = React.useState<string>("");
@@ -81,7 +79,8 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: "omni-core", label: "Omni Core (Hardware + 24/7 AI)", icon: <Radio className="w-4 h-4 text-emerald-400" />, isCore: true },
 
     // 7 Core AI Workspaces
-    { id: "chat", label: "Omni-Chat & Deep Reasoning", icon: <Bot className="w-4 h-4" />, isCore: true },
+    { id: "chat", label: "Standard Chat", icon: <Bot className="w-4 h-4" />, isCore: true },
+    { id: "astra", label: "Astra Mode (Pro)", icon: <Sparkles className="w-4 h-4 text-amber-400" />, isCore: true },
     { id: "vision-lab", label: "Vision & Document Lab", icon: <Eye className="w-4 h-4" />, isCore: true },
     { id: "live-agent", label: "Live Voice Agent", icon: <Headphones className="w-4 h-4" />, isCore: true },
     { id: "creative", label: "Creative Media Studio", icon: <Palette className="w-4 h-4" />, isCore: true },
@@ -145,18 +144,6 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
 
         <div className="flex items-center gap-2">
-          {/* 100% Free Publish & Share Button */}
-          {onOpenPublishModal && (
-            <button
-              onClick={onOpenPublishModal}
-              className="flex items-center gap-1.5 px-3 py-1 rounded-md bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-600 hover:from-emerald-500 hover:to-teal-500 text-white border border-emerald-400/50 text-xs font-bold transition shadow-md shadow-emerald-950/40"
-              title="Publish & Share App 100% Free (Zero Setup, No Billing, No Forms)"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-emerald-200" />
-              <span>Publish 100% Free</span>
-            </button>
-          )}
-
           {/* Daily Quota Renewal Countdown Button */}
           <button
             onClick={() => setActiveTab("omni-core")}

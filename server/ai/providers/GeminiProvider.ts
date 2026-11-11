@@ -16,7 +16,7 @@ import type {
 
 export class GeminiProvider implements AIProvider {
   public readonly name: AIProviderName = "gemini";
-  public readonly defaultModel: string = "gemini-4-argon";
+  public readonly defaultModel: string = "gemini-3.8-flash";
 
   private ai: GoogleGenAI;
   private apiKeyPresent: boolean = false;
@@ -64,9 +64,7 @@ export class GeminiProvider implements AIProvider {
 
   public async generate(request: AIRequest): Promise<AIResult> {
     const start = Date.now();
-    const model = request.reasoningEffort === "high" || request.reasoningEffort === "xhigh"
-      ? "gemini-4-argon"
-      : "gemini-3.8-flash";
+    const model = request.model || (request.reasoningEffort === "xhigh" ? "gemini-4-argon" : "gemini-3.8-flash");
 
     const config: any = {
       systemInstruction: request.systemInstructions,
@@ -176,9 +174,7 @@ export class GeminiProvider implements AIProvider {
     const start = Date.now();
     const requestId = request.requestId || `req-gemini-${Date.now()}`;
     let sequence = 0;
-    const model = request.reasoningEffort === "high" || request.reasoningEffort === "xhigh"
-      ? "gemini-4-argon"
-      : "gemini-3.8-flash";
+    const model = request.model || (request.reasoningEffort === "xhigh" ? "gemini-4-argon" : "gemini-3.8-flash");
 
     const config: any = {
       systemInstruction: request.systemInstructions,

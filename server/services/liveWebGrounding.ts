@@ -5,6 +5,7 @@
 // ============================================================================
 
 import { GoogleGenAI, ThinkingLevel } from "@google/genai";
+import { solveUniversalQuery, isConversationalQuery } from "./cognitiveEngine.ts";
 
 const ai = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY || "",
@@ -45,9 +46,48 @@ function stripHtml(html: string): string {
 }
 
 /**
+ * Determines whether a query should engage real-time search grounding.
+ * Returns false for conversational greetings, basic small talk, and pure code synthesis.
+ */
+export function shouldUseSearchGrounding(query: string, enableSearch: boolean = true): boolean {
+  if (!enableSearch) return false;
+  const q = query.trim().toLowerCase();
+
+  // Pure conversational greetings or casual remarks -> NEVER search
+  if (/^(hi|hello|hey|hola|namaste|greetings|good\s+(morning|afternoon|evening|night|day)|howdy|sup|yo)\b/i.test(q)) {
+    if (q.split(/\s+/).length <= 6 && !/\b(news|weather|price|stock|score|who is|who won|election|today)\b/i.test(q)) {
+      return false;
+    }
+  }
+
+  // Pure code requests -> don't search Google unless specifically asking for web docs
+  if (/^(write|create|generate|implement|code|build)\s+(a|an)?\s*(function|script|component|app|class|regex|python|javascript|typescript|html|css|sql|rust|go|c\+\+|java)/i.test(q)) {
+    if (!/\b(news|latest|current|api docs|release)\b/i.test(q)) {
+      return false;
+    }
+  }
+
+  // Pure math calculation -> don't search
+  if (/^(\d+[\s\+\-\*\/\^\(\)]+\d+|\s*calculate|\s*solve\s+[\dx\+\-\*\/\=]+)$/i.test(q)) {
+    return false;
+  }
+
+  return true;
+}
+
+/**
  * Fetch live news headlines directly from Google News RSS in real-time
+ * Strictly restricted to queries that explicitly request news or current events.
  */
 async function fetchGoogleNewsRss(query: string): Promise<{ headlines: string[]; sources: LiveSource[] }> {
+  // Only query news RSS if user actually asks for news, current affairs, or breaking headlines
+  if (!/\b(news|headlines|breaking|happening|update|current events|today's world)\b/i.test(query)) {
+    return { headlines: [], sources: [] };
+  }
+  if (isConversationalQuery(query)) {
+    return { headlines: [], sources: [] };
+  }
+
   try {
     const encoded = encodeURIComponent(query);
     const url = `https://news.google.com/rss/search?q=${encoded}&hl=en-US&gl=US&ceid=US:en`;
@@ -92,6 +132,11 @@ async function fetchGoogleNewsRss(query: string): Promise<{ headlines: string[];
  * Fetch live search snippets from web search engine
  */
 async function fetchWebSnippets(query: string): Promise<{ snippets: string[]; sources: LiveSource[] }> {
+  // Never run web snippet scraping on casual greetings
+  if (isConversationalQuery(query)) {
+    return { snippets: [], sources: [] };
+  }
+
   try {
     const encoded = encodeURIComponent(query);
     const url = `https://html.duckduckgo.com/html/?q=${encoded}`;
@@ -135,6 +180,11 @@ async function fetchWebSnippets(query: string): Promise<{ snippets: string[]; so
  * Fetch live Wikipedia summary / facts if entity detected
  */
 async function fetchWikipediaFacts(query: string): Promise<{ facts: string[]; sources: LiveSource[] }> {
+  // Never run Wikipedia lookups on conversational queries or pure code requests
+  if (isConversationalQuery(query) || /\b(reverse a string|function|python|typescript|javascript|code|algorithm)\b/i.test(query)) {
+    return { facts: [], sources: [] };
+  }
+
   try {
     const encoded = encodeURIComponent(query);
     const url = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encoded}&utf8=&format=json`;
@@ -232,7 +282,7 @@ async function fetchLiveFinancialQuote(query: string): Promise<{ financialText?:
 /**
  * Fetch live weather data if weather query detected
  */
-async function fetchLiveWeather(query: string): Promise<{ weatherText?: string; source?: LiveSource }> {
+export async function fetchLiveWeather(query: string): Promise<{ weatherText?: string; source?: LiveSource }> {
   if (!/\b(weather|temperature|forecast|rain|climate|humidity|degrees)\b/i.test(query)) {
     return {};
   }
@@ -394,16 +444,29 @@ export async function executeGroundedQuery(
   // Initiate live web intelligence pre-fetching in parallel to eliminate all wait time
   const liveIntelPromise = fetchLiveWebIntelligence(userPrompt);
 
-  // Step 1: Rapid attempt at native Google Search grounding if enabled
-  if (options.enableNativeSearch !== false && preferredModel !== "gemini-3.1-flash-lite") {
+  // Rapid conversational bypass: casual greetings receive natural conversational answers immediately
+  if (isConversationalQuery(userPrompt)) {
+    const directAns = await solveUniversalQuery(userPrompt);
+    return {
+      reply: directAns.text,
+      sources: directAns.sources || [],
+      modelUsed: "sarvagya-conversational-core",
+      timestamp,
+      executionMode: "live_feed_direct_synthesis",
+    };
+  }
+
+  // Step 1: Rapid attempt at native Google Search grounding if enabled and relevant
+  const shouldSearch = shouldUseSearchGrounding(userPrompt, options.enableNativeSearch !== false);
+  if (preferredModel !== "gemini-3.1-flash-lite") {
     try {
       const nativeConfig: any = {
         systemInstruction:
           (options.systemInstruction ||
             "You are SARVAGYA AI, a live web-grounded super-intelligence.") +
-          `\n\nTEMPORAL DIRECTIVE: Today is ${timestamp.split("T")[0]}, 2026. Use live Google Search grounding to return verified, current information with source citations.`,
+          `\n\nTEMPORAL DIRECTIVE: Today is ${timestamp.split("T")[0]}, 2026. Deliver verified, current information.`,
         temperature: options.temperature ?? 0.4,
-        tools: [{ googleSearch: {} }],
+        ...(shouldSearch ? { tools: [{ googleSearch: {} }] } : {}),
         thinkingConfig: {
           thinkingLevel:
             preferredModel === "gemini-3.8-flash"
@@ -449,7 +512,7 @@ export async function executeGroundedQuery(
       }
     } catch (err: any) {
       console.warn(
-        `[LiveWebGrounding] Native search grounding unavailable or timed out (${err?.message}). Seamlessly engaging autonomous Live Web Intelligence engine...`
+        `[LiveWebGrounding] Native search grounding unavailable or timed out (${err?.message}). Engaging cognitive engine...`
       );
     }
   }
@@ -485,9 +548,7 @@ ${userPrompt}
             "You are SARVAGYA AI, the supreme web-grounded super-intelligence.") +
           `\n\nCRITICAL LIVE DATA MANDATE:
 - Today's date is ${timestamp.split("T")[0]} (Year: 2026).
-- You have been provided with REAL-TIME LIVE WEB INTELLIGENCE gathered directly from live web search, breaking news RSS, financial feeds, and knowledge graphs.
-- You MUST synthesize an exhaustive, up-to-the-minute, authoritative response based on this live real-time data.
-- NEVER state that you lack real-time access or have a training cutoff. Use the live data provided above to deliver accurate, 100% real information.`,
+- Deliver accurate, direct, publication-grade responses.`,
         temperature: options.temperature ?? 0.4,
         thinkingConfig: {
           thinkingLevel: model === "gemini-3.8-flash" ? ThinkingLevel.LOW : ThinkingLevel.MINIMAL,
@@ -515,20 +576,13 @@ ${userPrompt}
     }
   }
 
-  // Step 3: Direct Live Synthesis from Fetched Web Telemetry (Zero Mock Guarantee)
-  const synthesisReply = `### SARVAGYA Real-Time Intelligence Synthesis
-**Query:** ${userPrompt}
-**Verified Live As Of:** ${timestamp}
-
-${liveIntel.groundingContext}
-
----
-*Synthesized autonomously via SARVAGYA Live Web Grounding Matrix with 100% real-time data feeds.*`;
+  // Step 3: Direct Cognitive Intelligence Synthesis (Zero Mock, Zero Fake Sandbox, Real Answer)
+  const solved = await solveUniversalQuery(userPrompt);
 
   return {
-    reply: synthesisReply,
-    sources: liveIntel.sources,
-    modelUsed: "sarvagya-live-telemetry-engine",
+    reply: solved.text,
+    sources: solved.sources || liveIntel.sources,
+    modelUsed: "sarvagya-universal-cognitive-engine",
     timestamp,
     executionMode: "live_feed_direct_synthesis",
   };

@@ -1,6 +1,7 @@
 export type ActiveTab =
-  | "omni-core"
   | "chat"
+  | "astra"
+  | "omni-core"
   | "vision-lab"
   | "live-agent"
   | "creative"
@@ -22,6 +23,36 @@ export type ActiveTab =
   | "memory"
   | "plugins"
   | "evolution";
+
+export interface ConversationSession {
+  id: string;
+  title: string;
+  createdAt: number;
+  updatedAt: number;
+  messages: ChatMessage[];
+  model: string;
+  mode:
+    | "standard"
+    | "astra"
+    | "thinking"
+    | "pro"
+    | "auto"
+    | "claude_fable"
+    | "gemini_carbon"
+    | "claude_opus"
+    | "claude_mythos"
+    | "claude_sonnet"
+    | "kimi_pro";
+  pinned?: boolean;
+}
+
+export interface ArtifactItem {
+  id: string;
+  title: string;
+  type: "html" | "react" | "svg" | "markdown" | "code";
+  language: string;
+  content: string;
+}
 
 export type CompanionProfileType = "MENTOR" | "CREATOR" | "ANALYST";
 

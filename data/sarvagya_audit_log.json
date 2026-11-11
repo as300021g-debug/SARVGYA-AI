@@ -6,6 +6,17 @@
     "toolsInvoked": [],
     "approvalGranted": true,
     "success": true,
+    "details": "Execution took 8486ms. Category: simple. Complexity: 1",
+    "id": "audit-1794048165597-utsp",
+    "timestamp": "2026-11-07T10:42:45.597Z"
+  },
+  {
+    "initiator": "SARVAGYA_ORCHESTRATOR",
+    "action": "ORCHESTRATE_QUICK",
+    "modelUsed": "gemini-3.1-flash-lite",
+    "toolsInvoked": [],
+    "approvalGranted": true,
+    "success": true,
     "details": "Execution took 6559ms. Category: simple. Complexity: 1",
     "id": "audit-1793613483403-k5f1",
     "timestamp": "2026-11-02T09:58:03.403Z"

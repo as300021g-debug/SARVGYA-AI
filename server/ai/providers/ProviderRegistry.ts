@@ -6,6 +6,7 @@
 import type { AIProvider, AIProviderName, ProviderHealth } from "./AIProvider.ts";
 import { astraProvider } from "./AstraProvider.ts";
 import { geminiProvider } from "./GeminiProvider.ts";
+import { claudeProvider } from "./ClaudeProvider.ts";
 
 export class ProviderRegistry {
   private providers = new Map<AIProviderName, AIProvider>();
@@ -13,6 +14,7 @@ export class ProviderRegistry {
   constructor() {
     this.register(astraProvider);
     this.register(geminiProvider);
+    this.register(claudeProvider);
   }
 
   public register(provider: AIProvider): void {

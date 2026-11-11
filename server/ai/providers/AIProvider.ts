@@ -3,7 +3,7 @@
 // Defines unified request, response, streaming and health contracts for all models
 // ============================================================================
 
-export type AIProviderName = "astra" | "gemini" | "fast_engine" | "multi_synthesis";
+export type AIProviderName = "astra" | "gemini" | "claude" | "fast_engine" | "multi_synthesis";
 
 export type ReasoningEffort = "low" | "medium" | "high" | "xhigh" | "max";
 
@@ -19,6 +19,7 @@ export interface AIRequest {
   tools?: any[];
   attachments?: Array<{ data: string; mimeType: string }>;
   temperature?: number;
+  model?: string;
 }
 
 export interface AIResult {
