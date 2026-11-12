@@ -1,6 +1,72 @@
 [
   {
     "initiator": "SARVAGYA_ORCHESTRATOR",
+    "action": "ORCHESTRATE_AUTO",
+    "modelUsed": "gemini-3.1-flash-lite",
+    "toolsInvoked": [],
+    "approvalGranted": true,
+    "success": true,
+    "details": "Execution took 4463ms. Category: education. Complexity: 1",
+    "id": "audit-1794493281713-gm0d",
+    "timestamp": "2026-11-12T14:21:21.713Z"
+  },
+  {
+    "initiator": "SARVAGYA_ORCHESTRATOR",
+    "action": "ORCHESTRATE_QUICK",
+    "modelUsed": "gemini-3.1-flash-lite",
+    "toolsInvoked": [],
+    "approvalGranted": true,
+    "success": true,
+    "details": "Execution took 83002ms. Category: simple. Complexity: 1",
+    "id": "audit-1794491718589-hvzx",
+    "timestamp": "2026-11-12T13:55:18.589Z"
+  },
+  {
+    "initiator": "SARVAGYA_ORCHESTRATOR",
+    "action": "ORCHESTRATE_QUICK",
+    "modelUsed": "gemini-3.1-flash-lite",
+    "toolsInvoked": [],
+    "approvalGranted": true,
+    "success": true,
+    "details": "Execution took 6554ms. Category: simple. Complexity: 1",
+    "id": "audit-1794491702212-4rk4",
+    "timestamp": "2026-11-12T13:55:02.212Z"
+  },
+  {
+    "initiator": "SARVAGYA_ORCHESTRATOR",
+    "action": "ORCHESTRATE_QUICK",
+    "modelUsed": "gemini-3.1-flash-lite",
+    "toolsInvoked": [],
+    "approvalGranted": true,
+    "success": true,
+    "details": "Execution took 77066ms. Category: simple. Complexity: 1",
+    "id": "audit-1794491677451-4vx1",
+    "timestamp": "2026-11-12T13:54:37.451Z"
+  },
+  {
+    "initiator": "SARVAGYA_ORCHESTRATOR",
+    "action": "ORCHESTRATE_QUICK",
+    "modelUsed": "gemini-3.1-flash-lite",
+    "toolsInvoked": [],
+    "approvalGranted": true,
+    "success": true,
+    "details": "Execution took 9009ms. Category: simple. Complexity: 1",
+    "id": "audit-1794491583573-ijia",
+    "timestamp": "2026-11-12T13:53:03.573Z"
+  },
+  {
+    "initiator": "SARVAGYA_ORCHESTRATOR",
+    "action": "ORCHESTRATE_QUICK",
+    "modelUsed": "gemini-3.1-flash-lite",
+    "toolsInvoked": [],
+    "approvalGranted": true,
+    "success": true,
+    "details": "Execution took 6201ms. Category: simple. Complexity: 1",
+    "id": "audit-1794491532869-p1bn",
+    "timestamp": "2026-11-12T13:52:12.869Z"
+  },
+  {
+    "initiator": "SARVAGYA_ORCHESTRATOR",
     "action": "ORCHESTRATE_QUICK",
     "modelUsed": "gemini-3.1-flash-lite",
     "toolsInvoked": [],

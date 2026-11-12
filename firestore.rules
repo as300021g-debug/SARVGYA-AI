@@ -41,6 +41,16 @@ service cloud.firestore {
         && data.content is string
         && data.content.size() <= 50000;
     }
+    function isValidKeepNote(data) {
+      return data.keys().hasAll(['id', 'title', 'authorId', 'createdAt'])
+        && data.id is string && data.id.size() <= 128
+        && data.title is string && data.title.size() <= 256
+        && data.authorId is string && data.authorId.size() <= 128
+        && (!('content' in data) || (data.content is string && data.content.size() <= 10000))
+        && (!('color' in data) || (data.color is string && data.color.size() <= 32))
+        && (!('pinned' in data) || (data.pinned is bool));
+    }
+
     match /users/{userId} {
       allow get: if isOwner(userId);
       allow list: if isOwner(userId);
@@ -56,6 +66,20 @@ service cloud.firestore {
         && incoming().userId == existing().userId
         && incoming().updatedAt == request.time;
       allow delete: if isOwner(userId);
+
+      match /notes/{noteId} {
+        allow get, list: if isOwner(userId);
+        allow create: if isOwner(userId)
+          && isValidId(noteId)
+          && isValidKeepNote(incoming())
+          && incoming().authorId == userId;
+        allow update: if isOwner(userId)
+          && isValidId(noteId)
+          && isValidKeepNote(incoming())
+          && incoming().authorId == userId
+          && incoming().authorId == existing().authorId;
+        allow delete: if isOwner(userId);
+      }
 
       match /chats/{chatId} {
         allow get, list: if isOwner(userId);

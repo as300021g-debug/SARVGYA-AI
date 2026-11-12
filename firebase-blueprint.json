@@ -64,6 +64,23 @@
       },
       "required": ["userId", "userProfile", "memories", "plugins", "updatedAt"]
     },
+    "KeepNote": {
+      "title": "Google Keep Note",
+      "description": "User notes, checklists, memos, and ideas synchronized with Google Keep and Firebase",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string", "maxLength": 256 },
+        "content": { "type": "string", "maxLength": 10000 },
+        "color": { "type": "string" },
+        "pinned": { "type": "boolean" },
+        "labels": { "type": "string" },
+        "authorId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "title", "authorId", "createdAt"]
+    },
     "ChatMessage": {
       "title": "Chat Message",
       "description": "A single chat message exchanged between the user and SARVAGYA AI",
@@ -95,6 +112,10 @@
     "/users/{userId}": {
       "schema": "UserBackup",
       "description": "Core backup document containing a synchronized state of the user's workspace settings, memories, and plugins."
+    },
+    "/users/{userId}/notes/{noteId}": {
+      "schema": "KeepNote",
+      "description": "User Google Keep notes and checklists synced with Firebase Firestore."
     },
     "/users/{userId}/chats/{chatId}": {
       "schema": "ChatMessage",

@@ -1134,7 +1134,6 @@ export const WorkspaceModule: React.FC = () => {
                         <button
                           onClick={() => {
                             navigator.clipboard.writeText(`${note.title}\n\n${note.text}`);
-                            alert("Note copied to clipboard!");
                           }}
                           className="p-1 text-slate-400 hover:text-white rounded transition"
                           title="Copy Note"

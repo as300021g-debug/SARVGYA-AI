@@ -28,6 +28,7 @@ import {
   Radio,
   Clock,
   Key,
+  StickyNote,
 } from "lucide-react";
 import { ActiveTab, UserProfile } from "../types";
 
@@ -101,6 +102,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: "stocks", label: "Stocks & Quant", icon: <TrendingUp className="w-4 h-4" /> },
     { id: "buyhatke", label: "BuyHatke Deals", icon: <Tag className="w-4 h-4" /> },
     { id: "workspace", label: "Google Workspace", icon: <Briefcase className="w-4 h-4" /> },
+    { id: "keep", label: "Google Keep Notes", icon: <StickyNote className="w-4 h-4 text-amber-400" /> },
     { id: "maps", label: "Maps Explorer", icon: <MapPin className="w-4 h-4" /> },
     { id: "plugins", label: "AI Plugins", icon: <Cpu className="w-4 h-4" /> },
     { id: "evolution", label: "Evolution HUD", icon: <Activity className="w-4 h-4" /> },

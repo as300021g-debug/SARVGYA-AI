@@ -48,11 +48,9 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   const [clearedConfirm, setClearedConfirm] = useState(false);
 
   const handleClear = () => {
-    if (window.confirm("Are you sure you want to delete all chat history? This cannot be undone.")) {
-      onClearAllChats();
-      setClearedConfirm(true);
-      setTimeout(() => setClearedConfirm(false), 2000);
-    }
+    onClearAllChats();
+    setClearedConfirm(true);
+    setTimeout(() => setClearedConfirm(false), 2000);
   };
 
   return (

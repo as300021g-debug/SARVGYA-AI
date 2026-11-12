@@ -233,7 +233,7 @@ How can I assist you with your project, software, or inquiry today?`,
 
   const toggleVoiceListen = () => {
     if (!recognitionRef.current) {
-      alert("Web Speech API is not supported in this browser. Please use Chrome or Safari.");
+      console.warn("Web Speech API is not supported in this browser environment.");
       return;
     }
     if (isListening) {
@@ -850,7 +850,7 @@ How can I assist you with your project, software, or inquiry today?`,
                 if (parsed.length > 0) setActiveChatId(parsed[0].id);
               }
             } catch {
-              alert("Failed to parse chat backup JSON.");
+              console.warn("Failed to parse chat backup JSON.");
             }
           };
           reader.readAsText(file);

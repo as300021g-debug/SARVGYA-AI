@@ -25,6 +25,7 @@ import { FullStackStudio } from "./components/workspaces/FullStackStudio";
 import { SpeechTranslateStudio } from "./components/workspaces/SpeechTranslateStudio";
 import { ModelConfigDrawer } from "./components/ModelConfigDrawer";
 import { OmniCoreHardwareHub } from "./components/OmniCoreHardwareHub";
+import { GoogleKeepModule } from "./components/GoogleKeepModule";
 import { ActiveTab, UserProfile, ModelParameters } from "./types";
 import { brainwaveSynthesizer } from "./utils/brainwaveSynthesizer";
 
@@ -91,7 +92,7 @@ export default function App() {
         }
         window.location.reload();
       } catch (err) {
-        alert("Failed to parse backup JSON file.");
+        console.error("Failed to parse backup JSON file:", err);
       }
     };
     reader.readAsText(file);
@@ -308,6 +309,7 @@ export default function App() {
         {activeTab === "stocks" && <StockModule />}
         {activeTab === "buyhatke" && <BuyHatkeModule />}
         {activeTab === "workspace" && <WorkspaceModule />}
+        {activeTab === "keep" && <GoogleKeepModule />}
         {activeTab === "maps" && <MapsModule />}
         {activeTab === "plugins" && <PluginCenter />}
         {activeTab === "evolution" && (

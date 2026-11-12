@@ -22,7 +22,8 @@ export type ActiveTab =
   | "business"
   | "memory"
   | "plugins"
-  | "evolution";
+  | "evolution"
+  | "keep";
 
 export interface ConversationSession {
   id: string;
@@ -129,4 +130,17 @@ export interface UserProfile {
   soundscapeEnabled: boolean;
   soundscapeVolume: number;
   pinnedApps: string[];
+}
+
+export interface KeepNote {
+  id: string;
+  title: string;
+  content: string;
+  color?: string;
+  pinned?: boolean;
+  labels?: string;
+  checklist?: Array<{ id: string; text: string; done: boolean }>;
+  authorId: string;
+  createdAt: string;
+  updatedAt: string;
 }

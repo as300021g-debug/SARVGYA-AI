@@ -401,7 +401,7 @@ export const OmniCoreHardwareHub: React.FC<OmniCoreHardwareHubProps> = ({
       if (videoRef.current) videoRef.current.srcObject = stream;
       setVisionMode("camera");
     } catch (err: any) {
-      alert("Camera error: " + err.message);
+      console.warn("Camera error:", err?.message || err);
     }
   };
 
@@ -417,7 +417,7 @@ export const OmniCoreHardwareHub: React.FC<OmniCoreHardwareHubProps> = ({
       if (videoRef.current) videoRef.current.srcObject = stream;
       setVisionMode("screen");
     } catch (err: any) {
-      alert("Screen share error: " + err.message);
+      console.warn("Screen share error:", err?.message || err);
     }
   };
 
@@ -440,7 +440,7 @@ export const OmniCoreHardwareHub: React.FC<OmniCoreHardwareHubProps> = ({
     // @ts-ignore
     const SpeechRecognition = window.SpeechRecognition || (window as any).webkitSpeechRecognition;
     if (!SpeechRecognition) {
-      alert("Web Speech API is supported in Google Chrome or Microsoft Edge.");
+      console.warn("Web Speech API is supported in Google Chrome or Microsoft Edge.");
       return;
     }
 
@@ -478,7 +478,7 @@ export const OmniCoreHardwareHub: React.FC<OmniCoreHardwareHubProps> = ({
         recognizer.start();
         setIsVoiceLoopActive(true);
       } catch (err) {
-        alert("Microphone initialization error.");
+        console.warn("Microphone initialization error:", err);
       }
     }
   };
